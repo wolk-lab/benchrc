@@ -15,6 +15,15 @@ Tooling:
 - Rust benchmarks use Criterion
 - C++ benchmarks use Google Benchmark
 
+## Requirements
+
+- Rust toolchain with `cargo`
+- CMake 3.20+
+- A C++20 compiler
+- Google Benchmark (required for C++ benchmarks)
+- OpenMP support (optional, enables OpenMP variants)
+- Taskflow headers (optional, enables Taskflow variants)
+
 ## Rust: Criterion
 
 Run the Rust benchmark suites with Criterion:
