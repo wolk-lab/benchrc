@@ -1,7 +1,7 @@
 use criterion::{criterion_group, criterion_main, BatchSize, Criterion};
 use std::hint::black_box;
 use rayon::prelude::*;
-use benchrc::benchmarks::common::generate_u32;
+use benchrc::benchmarks::common::{histogram_uniform_1m, rayon_overhead_u32_10k};
 
 fn rayon_join_empty(c: &mut Criterion) {
     c.bench_function("rayon_join_empty", |b| {
@@ -56,7 +56,7 @@ fn rayon_threadpool_spawn(c: &mut Criterion) {
 }
 
 fn rayon_par_chunks_histogram(c: &mut Criterion) {
-    let data: Vec<u64> = (0..1_000_000).map(|i| (i * 7) % 256).collect();
+    let data = histogram_uniform_1m();
     c.bench_function("rayon_par_chunks_histogram", |b| {
         b.iter(|| {
             let result = data
@@ -123,8 +123,9 @@ fn rayon_join_recursive_mergesort(c: &mut Criterion) {
         arr.clone_from_slice(&buf[..n]);
     }
 
-    let source: Vec<u64> = generate_u32(10_000, 42)
-        .into_iter()
+    let source: Vec<u64> = rayon_overhead_u32_10k()
+        .iter()
+        .copied()
         .map(|value| value as u64)
         .collect();
 

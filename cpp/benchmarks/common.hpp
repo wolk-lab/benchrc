@@ -23,27 +23,27 @@ inline void add_thread_args(benchmark::internal::Benchmark* bench) {
 }
 
 inline const std::vector<uint64_t>& histogram_uniform_1m() {
-    static const auto data = generate_uniform(1'000'000, kHistogramBuckets, 42);
+    static const auto data = load_u64_dataset("histogram_uniform_1m.u64le.bin", 1'000'000);
     return data;
 }
 
 inline const std::vector<uint64_t>& histogram_uniform_10m() {
-    static const auto data = generate_uniform(10'000'000, kHistogramBuckets, 42);
+    static const auto data = load_u64_dataset("histogram_uniform_10m.u64le.bin", 10'000'000);
     return data;
 }
 
 inline const std::vector<uint32_t>& mergesort_u32_1m() {
-    static const auto data = generate_u32(1'000'000, 42);
+    static const auto data = load_u32_dataset("mergesort_u32_1m.u32le.bin", 1'000'000);
     return data;
 }
 
 inline const std::vector<double>& stencil_f64_1m() {
-    static const auto data = generate_f64(1'000'000, 42);
+    static const auto data = load_f64_dataset("stencil_f64_1m.f64le.bin", 1'000'000);
     return data;
 }
 
 inline const Graph& bfs_graph_64k() {
-    static const auto graph = seminar::benchmark_graph(65'536, 4);
+    static const auto graph = load_graph_dataset("bfs_64k_fanout4.graph.bin");
     return graph;
 }
 

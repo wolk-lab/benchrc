@@ -1,71 +1,110 @@
 #pragma once
 
-#include <algorithm>
 #include <bit>
-#include <cmath>
 #include <cstdint>
-#include <random>
+#include <cstdlib>
+#include <filesystem>
+#include <fstream>
+#include <stdexcept>
+#include <string>
 #include <vector>
 
 static constexpr uint64_t FNV_OFFSET = 0xcbf29ce484222325ULL;
 static constexpr uint64_t FNV_PRIME = 0x100000001b3ULL;
+static constexpr const char* BENCHRC_DATASETS_ENV = "BENCHRC_DATASETS_DIR";
 
-static std::vector<uint64_t> generate_uniform(size_t n, uint64_t buckets, uint64_t seed) {
-    std::mt19937_64 rng(seed);
-    std::uniform_int_distribution<uint64_t> dist(0, buckets - 1);
-    std::vector<uint64_t> data(n);
-    for (auto& value : data) value = dist(rng);
-    return data;
+static std::filesystem::path datasets_dir() {
+    if (const char* value = std::getenv(BENCHRC_DATASETS_ENV)) {
+        return std::filesystem::path(value);
+    }
+    return std::filesystem::path("datasets");
 }
 
-static std::vector<uint64_t> generate_zipf(size_t n, uint64_t buckets, double alpha, uint64_t seed) {
-    std::mt19937_64 rng(seed);
-    std::uniform_real_distribution<double> uniform(0.0, 1.0);
-
-    std::vector<double> cdf(buckets);
-    double denom = 0.0;
-    for (uint64_t i = 1; i <= buckets; i++) {
-        denom += 1.0 / std::pow(i, alpha);
-    }
-
-    double cum = 0.0;
-    for (uint64_t i = 0; i < buckets; i++) {
-        cum += 1.0 / std::pow(i + 1, alpha) / denom;
-        cdf[i] = cum;
-    }
-
-    std::vector<uint64_t> data(n);
-    for (auto& value : data) {
-        double sample = uniform(rng);
-        uint64_t lo = 0;
-        uint64_t hi = buckets - 1;
-        while (lo < hi) {
-            uint64_t mid = lo + (hi - lo) / 2;
-            if (cdf[mid] <= sample) {
-                lo = mid + 1;
-            } else {
-                hi = mid;
-            }
-        }
-        value = lo;
-    }
-
-    return data;
+static std::filesystem::path dataset_path(const std::string& name) {
+    return datasets_dir() / name;
 }
 
-static std::vector<uint32_t> generate_u32(size_t n, uint64_t seed) {
-    std::mt19937_64 rng(seed);
-    std::vector<uint32_t> data(n);
-    for (auto& value : data) value = static_cast<uint32_t>(rng());
-    return data;
+static std::vector<char> read_dataset_bytes(const std::string& name) {
+    auto path = dataset_path(name);
+    std::ifstream input(path, std::ios::binary | std::ios::ate);
+    if (!input) {
+        throw std::runtime_error(
+            "failed to read dataset " + name + " at " + path.string() +
+            ". run `python3 scripts/generate_datasets.py` first");
+    }
+
+    auto size = static_cast<size_t>(input.tellg());
+    input.seekg(0);
+
+    std::vector<char> bytes(size);
+    input.read(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+    if (!input) {
+        throw std::runtime_error("failed to read full dataset " + name + " from " + path.string());
+    }
+    return bytes;
 }
 
-static std::vector<double> generate_f64(size_t n, uint64_t seed) {
-    std::mt19937_64 rng(seed);
-    std::uniform_real_distribution<double> dist(0.0, 1.0);
-    std::vector<double> data(n);
-    for (auto& value : data) value = dist(rng);
-    return data;
+static uint32_t read_u32_le(const char* ptr) {
+    return static_cast<uint32_t>(static_cast<unsigned char>(ptr[0])) |
+           (static_cast<uint32_t>(static_cast<unsigned char>(ptr[1])) << 8) |
+           (static_cast<uint32_t>(static_cast<unsigned char>(ptr[2])) << 16) |
+           (static_cast<uint32_t>(static_cast<unsigned char>(ptr[3])) << 24);
+}
+
+static uint64_t read_u64_le(const char* ptr) {
+    return static_cast<uint64_t>(static_cast<unsigned char>(ptr[0])) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[1])) << 8) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[2])) << 16) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[3])) << 24) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[4])) << 32) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[5])) << 40) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[6])) << 48) |
+           (static_cast<uint64_t>(static_cast<unsigned char>(ptr[7])) << 56);
+}
+
+static std::vector<uint64_t> load_u64_dataset(const std::string& name, size_t expected_len) {
+    auto bytes = read_dataset_bytes(name);
+    size_t expected_bytes = expected_len * sizeof(uint64_t);
+    if (bytes.size() != expected_bytes) {
+        throw std::runtime_error("dataset " + name + " has unexpected size");
+    }
+
+    std::vector<uint64_t> values;
+    values.reserve(expected_len);
+    for (size_t offset = 0; offset < bytes.size(); offset += 8) {
+        values.push_back(read_u64_le(bytes.data() + offset));
+    }
+    return values;
+}
+
+static std::vector<uint32_t> load_u32_dataset(const std::string& name, size_t expected_len) {
+    auto bytes = read_dataset_bytes(name);
+    size_t expected_bytes = expected_len * sizeof(uint32_t);
+    if (bytes.size() != expected_bytes) {
+        throw std::runtime_error("dataset " + name + " has unexpected size");
+    }
+
+    std::vector<uint32_t> values;
+    values.reserve(expected_len);
+    for (size_t offset = 0; offset < bytes.size(); offset += 4) {
+        values.push_back(read_u32_le(bytes.data() + offset));
+    }
+    return values;
+}
+
+static std::vector<double> load_f64_dataset(const std::string& name, size_t expected_len) {
+    auto bytes = read_dataset_bytes(name);
+    size_t expected_bytes = expected_len * sizeof(double);
+    if (bytes.size() != expected_bytes) {
+        throw std::runtime_error("dataset " + name + " has unexpected size");
+    }
+
+    std::vector<double> values;
+    values.reserve(expected_len);
+    for (size_t offset = 0; offset < bytes.size(); offset += 8) {
+        values.push_back(std::bit_cast<double>(read_u64_le(bytes.data() + offset)));
+    }
+    return values;
 }
 
 static uint64_t mix64(uint64_t value) {
@@ -109,3 +148,34 @@ struct Graph {
     std::vector<uint32_t> edges;
     size_t num_nodes;
 };
+
+static Graph load_graph_dataset(const std::string& name) {
+    auto bytes = read_dataset_bytes(name);
+    if (bytes.size() < 24) {
+        throw std::runtime_error("graph dataset " + name + " is too small");
+    }
+
+    size_t num_nodes = static_cast<size_t>(read_u64_le(bytes.data()));
+    size_t offsets_len = static_cast<size_t>(read_u64_le(bytes.data() + 8));
+    size_t edges_len = static_cast<size_t>(read_u64_le(bytes.data() + 16));
+
+    size_t expected_bytes = 24 + offsets_len * sizeof(uint64_t) + edges_len * sizeof(uint32_t);
+    if (bytes.size() != expected_bytes) {
+        throw std::runtime_error("graph dataset " + name + " has unexpected size");
+    }
+
+    Graph graph;
+    graph.num_nodes = num_nodes;
+    graph.offsets.reserve(offsets_len);
+    graph.edges.reserve(edges_len);
+
+    size_t offset = 24;
+    for (size_t i = 0; i < offsets_len; i++, offset += 8) {
+        graph.offsets.push_back(static_cast<size_t>(read_u64_le(bytes.data() + offset)));
+    }
+    for (size_t i = 0; i < edges_len; i++, offset += 4) {
+        graph.edges.push_back(read_u32_le(bytes.data() + offset));
+    }
+
+    return graph;
+}

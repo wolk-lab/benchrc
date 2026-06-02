@@ -4,34 +4,12 @@ use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_elemen
 use criterion::{BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
     bfs::{rayon as bfs_rayon, sequential as bfs_seq},
-    common::Graph,
+    common::bfs_graph_64k,
 };
 use std::hint::black_box;
 
-fn benchmark_graph(num_nodes: usize, fanout: usize) -> Graph {
-    let mut offsets = Vec::with_capacity(num_nodes + 1);
-    let mut edges = Vec::new();
-    offsets.push(0);
-
-    for node in 0..num_nodes {
-        for step in 1..=fanout {
-            let neighbor = node + step;
-            if neighbor < num_nodes {
-                edges.push(neighbor as u32);
-            }
-        }
-        offsets.push(edges.len());
-    }
-
-    Graph {
-        offsets,
-        edges,
-        num_nodes,
-    }
-}
-
 fn bfs_benches(c: &mut criterion::Criterion) {
-    let graph = benchmark_graph(65_536, 4);
+    let graph = bfs_graph_64k();
     let mut group = c.benchmark_group("bfs");
     configure_group(&mut group);
     set_element_throughput(&mut group, graph.num_nodes);

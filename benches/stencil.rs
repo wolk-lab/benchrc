@@ -3,13 +3,13 @@ mod common;
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
-    common::generate_f64,
+    common::stencil_f64_1m,
     stencil::{rayon as stencil_rayon, sequential as stencil_seq},
 };
 use std::hint::black_box;
 
 fn stencil_benches(c: &mut criterion::Criterion) {
-    let data = generate_f64(1_000_000, 42);
+    let data = stencil_f64_1m();
     let mut group = c.benchmark_group("stencil");
     configure_group(&mut group);
     set_element_throughput(&mut group, data.len());

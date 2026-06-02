@@ -3,20 +3,20 @@ mod common;
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BatchSize, BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
-    common::generate_u32,
+    common::mergesort_u32_1m,
     mergesort::{rayon as mergesort_rayon, sequential as mergesort_seq},
 };
 use std::hint::black_box;
 
 fn mergesort_benches(c: &mut criterion::Criterion) {
-    let source = generate_u32(1_000_000, 42);
+    let source = mergesort_u32_1m();
     let mut group = c.benchmark_group("mergesort");
     configure_group(&mut group);
     set_element_throughput(&mut group, source.len());
 
     group.bench_function(BenchmarkId::new("seq", "1M_u32_cutoff1024"), |b| {
         b.iter_batched(
-            || source.clone(),
+            || source.to_vec(),
             |mut values| {
                 mergesort_seq::mergesort_u32(black_box(&mut values), 1024);
                 black_box(values);
@@ -32,7 +32,7 @@ fn mergesort_benches(c: &mut criterion::Criterion) {
             .unwrap();
         group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), "1M_u32_cutoff1024"), |b| {
             b.iter_batched(
-                || source.clone(),
+                || source.to_vec(),
                 |mut values| {
                     pool.install(|| mergesort_rayon::mergesort_u32(black_box(&mut values), 1024));
                     black_box(values);

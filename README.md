@@ -17,12 +17,24 @@ Tooling:
 
 ## Requirements
 
+- Python 3
 - Rust toolchain with `cargo`
 - CMake 3.20+
 - A C++20 compiler
 - Google Benchmark (required for C++ benchmarks)
 - OpenMP
 - Taskflow
+
+## Shared datasets
+
+Generate the shared datasets once before running either the Rust or C++ benchmarks:
+
+```bash
+python3 scripts/generate_datasets.py
+```
+
+Both implementations read the same files from `./datasets/`.
+You can override the dataset location with `BENCHRC_DATASETS_DIR`.
 
 ## Rust: Criterion
 

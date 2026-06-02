@@ -12,25 +12,6 @@
 
 namespace seminar {
 
-inline Graph benchmark_graph(size_t num_nodes, size_t fanout) {
-    std::vector<size_t> offsets;
-    std::vector<uint32_t> edges;
-    offsets.reserve(num_nodes + 1);
-    offsets.push_back(0);
-
-    for (size_t node = 0; node < num_nodes; node++) {
-        for (size_t step = 1; step <= fanout; step++) {
-            size_t neighbor = node + step;
-            if (neighbor < num_nodes) {
-                edges.push_back(static_cast<uint32_t>(neighbor));
-            }
-        }
-        offsets.push_back(edges.size());
-    }
-
-    return Graph{std::move(offsets), std::move(edges), num_nodes};
-}
-
 inline std::vector<uint64_t> histogram_openmp(const std::vector<uint64_t>& data, uint64_t buckets,
                                               int threads) {
     omp_set_num_threads(threads);
