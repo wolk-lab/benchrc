@@ -2,7 +2,7 @@ mod common;
 
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BatchSize, BenchmarkId, criterion_group, criterion_main};
-use seminar::benchmarks::{
+use benchrc::benchmarks::{
     common::generate_u32,
     mergesort::{rayon as mergesort_rayon, sequential as mergesort_seq},
 };

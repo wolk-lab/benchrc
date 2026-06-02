@@ -2,7 +2,7 @@ mod common;
 
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BenchmarkId, criterion_group, criterion_main};
-use seminar::benchmarks::{
+use benchrc::benchmarks::{
     bfs::{rayon as bfs_rayon, sequential as bfs_seq},
     common::Graph,
 };

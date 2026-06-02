@@ -2,7 +2,7 @@ mod common;
 
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BenchmarkId, criterion_group, criterion_main};
-use seminar::benchmarks::{
+use benchrc::benchmarks::{
     common::generate_f64,
     stencil::{rayon as stencil_rayon, sequential as stencil_seq},
 };

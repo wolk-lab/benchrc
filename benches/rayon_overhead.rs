@@ -1,7 +1,7 @@
 use criterion::{criterion_group, criterion_main, BatchSize, Criterion};
 use std::hint::black_box;
 use rayon::prelude::*;
-use seminar::benchmarks::common::generate_u32;
+use benchrc::benchmarks::common::generate_u32;
 
 fn rayon_join_empty(c: &mut Criterion) {
     c.bench_function("rayon_join_empty", |b| {
