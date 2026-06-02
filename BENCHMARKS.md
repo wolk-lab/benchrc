@@ -12,42 +12,48 @@ That shell provides Rust, CMake, Google Benchmark, OpenMP, and Taskflow headers.
 
 ## Rust: Criterion
 
-Run the Rust benchmark suite with Criterion:
+Run the Rust benchmark suites with Criterion:
 
 ```bash
-cargo bench --bench benchmarks
+cargo bench --bench histogram
+cargo bench --bench mergesort
+cargo bench --bench stencil
+cargo bench --bench bfs
 cargo bench --bench rayon_overhead
 ```
 
-The main Rust suite benchmarks the library kernels directly:
+The Rust benchmarks are split by kernel family:
 
-- histogram: sequential vs Rayon
-- mergesort: sequential vs Rayon
-- stencil: sequential vs Rayon
-- bfs: sequential vs Rayon
+- `benches/histogram.rs`
+- `benches/mergesort.rs`
+- `benches/stencil.rs`
+- `benches/bfs.rs`
 
 Criterion handles warmup, sampling, and statistics in-process, so CLI parsing and process startup are excluded.
 
 ## C++: Google Benchmark
 
-Configure and build the C++ suite:
+Configure and build the C++ suites:
 
 ```bash
 cmake -S cpp -B cpp/build
-cmake --build cpp/build --target seminar_google_benchmarks
+cmake --build cpp/build --target histogram_benchmarks mergesort_benchmarks stencil_benchmarks bfs_benchmarks
 ```
 
-Run it with:
+Run them with:
 
 ```bash
-./cpp/build/seminar_google_benchmarks
+./cpp/build/histogram_benchmarks
+./cpp/build/mergesort_benchmarks
+./cpp/build/stencil_benchmarks
+./cpp/build/bfs_benchmarks
 ```
 
-Useful filters:
+The C++ benchmarks are split by kernel family:
 
-```bash
-./cpp/build/seminar_google_benchmarks --benchmark_filter=Histogram
-./cpp/build/seminar_google_benchmarks --benchmark_filter=Mergesort
-```
+- `cpp/benchmarks/histogram.cpp`
+- `cpp/benchmarks/mergesort.cpp`
+- `cpp/benchmarks/stencil.cpp`
+- `cpp/benchmarks/bfs.cpp`
 
 Google Benchmark is configured to use real time and warmup so threaded C++ runs measure kernel wall-clock time.

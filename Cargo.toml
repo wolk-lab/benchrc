@@ -20,5 +20,17 @@ name = "rayon_overhead"
 harness = false
 
 [[bench]]
-name = "benchmarks"
+name = "histogram"
+harness = false
+
+[[bench]]
+name = "mergesort"
+harness = false
+
+[[bench]]
+name = "stencil"
+harness = false
+
+[[bench]]
+name = "bfs"
 harness = false

@@ -37,8 +37,8 @@
                 languages.rust.enable = true;
 
                 enterShell = ''
-                  echo "Rust benchmarks: cargo bench --bench benchmarks"
-                  echo "C++ benchmarks: cmake -S cpp -B cpp/build && cmake --build cpp/build --target seminar_google_benchmarks"
+                  echo "Rust benchmarks: cargo bench --bench histogram|mergesort|stencil|bfs"
+                  echo "C++ benchmarks: cmake -S cpp -B cpp/build && cmake --build cpp/build --target histogram_benchmarks mergesort_benchmarks stencil_benchmarks bfs_benchmarks"
                 '';
               })
             ];
