@@ -21,8 +21,8 @@ Tooling:
 - CMake 3.20+
 - A C++20 compiler
 - Google Benchmark (required for C++ benchmarks)
-- OpenMP support (optional, enables OpenMP variants)
-- Taskflow headers (optional, enables Taskflow variants)
+- OpenMP support
+- Taskflow headers
 
 ## Rust: Criterion
 
