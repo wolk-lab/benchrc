@@ -1,6 +1,3 @@
-use crate::benchmarks::common::{
-    checksum_sum_f64, emit_csv, generate_f64, maybe_load_data_f64, Timer,
-};
 use rayon::prelude::*;
 
 pub fn stencil(values: &[f64], iterations: usize, radius: usize) -> Vec<f64> {
@@ -20,36 +17,4 @@ pub fn stencil(values: &[f64], iterations: usize, radius: usize) -> Vec<f64> {
     }
 
     current
-}
-
-pub fn run(input: &str, threads: usize, run_id: usize) {
-    let pool = rayon::ThreadPoolBuilder::new()
-        .num_threads(threads)
-        .build()
-        .unwrap();
-
-    pool.install(|| {
-        let parts: Vec<&str> = input.split('_').collect();
-        let n: usize = parts[0].parse().unwrap();
-        let iterations: usize = parts[1].strip_prefix("k").unwrap().parse().unwrap();
-        let radius: usize = parts[2].strip_prefix("r").unwrap().parse().unwrap();
-        let seed = 42;
-
-        let data = maybe_load_data_f64().unwrap_or_else(|| generate_f64(n, seed));
-
-        let timer = Timer::start();
-        let result = stencil(&data, iterations, radius);
-        let elapsed = timer.elapsed_secs();
-
-        let checksum = checksum_sum_f64(&result);
-        emit_csv(
-            "stencil",
-            input,
-            "rust_rayon",
-            threads,
-            run_id,
-            elapsed,
-            checksum,
-        );
-    });
 }

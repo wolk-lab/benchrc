@@ -1,9 +1,7 @@
 /target
-cpp/*/openmp
-cpp/*/taskflow
 cpp/build
-.direnv
-.devenv
+.direnv/
+.devenv/
 *.csv
 datasets/
 results/

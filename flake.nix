@@ -6,7 +6,7 @@
     devenv.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, systems, devenv, ... }:
+  outputs = { nixpkgs, systems, devenv, ... } @ inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
@@ -21,14 +21,18 @@
             modules = [
               ({ pkgs, ... }: {
                 packages = with pkgs; [
+                  cmake
                   gbenchmark
+                  gnumake
                   llvmPackages.clang
                   llvmPackages.openmp
-                  cmake
-                  gnumake
                   ninja
                   pkg-config
+                  taskflow
                 ];
+
+                env.CPLUS_INCLUDE_PATH = "${pkgs.taskflow}/include";
+                env.CMAKE_INCLUDE_PATH = "${pkgs.taskflow}/include";
 
                 languages.rust.enable = true;
 
