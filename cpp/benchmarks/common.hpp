@@ -48,24 +48,19 @@ inline const Graph& bfs_graph_64k() {
 }
 
 inline void verify_histogram() {
-#if SEMINAR_HAS_OPENMP
     auto openmp_result = seminar::histogram_openmp(histogram_uniform_1m(), kHistogramBuckets, 1);
     if (checksum_histogram(openmp_result) != histogram_uniform_1m().size()) {
         throw std::runtime_error("OpenMP histogram verification failed");
     }
-#endif
 
-#if SEMINAR_HAS_TASKFLOW
     auto taskflow_result =
         seminar::histogram_taskflow(histogram_uniform_1m(), kHistogramBuckets, 1, 4);
     if (checksum_histogram(taskflow_result) != histogram_uniform_1m().size()) {
         throw std::runtime_error("Taskflow histogram verification failed");
     }
-#endif
 }
 
 inline void verify_mergesort() {
-#if SEMINAR_HAS_OPENMP
     {
         auto values = mergesort_u32_1m();
         auto expected = checksum_sum_u32(values);
@@ -74,9 +69,7 @@ inline void verify_mergesort() {
             throw std::runtime_error("OpenMP mergesort verification failed");
         }
     }
-#endif
 
-#if SEMINAR_HAS_TASKFLOW
     {
         auto values = mergesort_u32_1m();
         auto expected = checksum_sum_u32(values);
@@ -85,37 +78,28 @@ inline void verify_mergesort() {
             throw std::runtime_error("Taskflow mergesort verification failed");
         }
     }
-#endif
 }
 
 inline void verify_stencil() {
-#if SEMINAR_HAS_OPENMP
     auto openmp_result =
         seminar::stencil_openmp(stencil_f64_1m(), kStencilIterations, kStencilRadius, 1);
     benchmark::DoNotOptimize(openmp_result.data());
-#endif
 
-#if SEMINAR_HAS_TASKFLOW
     auto taskflow_result =
         seminar::stencil_taskflow(stencil_f64_1m(), kStencilIterations, kStencilRadius, 1);
     benchmark::DoNotOptimize(taskflow_result.data());
-#endif
 }
 
 inline void verify_bfs() {
-#if SEMINAR_HAS_OPENMP
     auto openmp_visited = seminar::bfs_openmp(bfs_graph_64k(), 0, 1);
     if (openmp_visited != bfs_graph_64k().num_nodes) {
         throw std::runtime_error("OpenMP BFS verification failed");
     }
-#endif
 
-#if SEMINAR_HAS_TASKFLOW
     auto taskflow_visited = seminar::bfs_taskflow(bfs_graph_64k(), 0, 1);
     if (taskflow_visited != bfs_graph_64k().num_nodes) {
         throw std::runtime_error("Taskflow BFS verification failed");
     }
-#endif
 }
 
 } // namespace seminar::benchmarks

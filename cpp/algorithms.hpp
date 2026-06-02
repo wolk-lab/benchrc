@@ -6,21 +6,9 @@
 #include <atomic>
 #include <memory>
 #include <mutex>
-#include <vector>
-
-#if __has_include(<omp.h>)
 #include <omp.h>
-#define SEMINAR_HAS_OPENMP 1
-#else
-#define SEMINAR_HAS_OPENMP 0
-#endif
-
-#if __has_include(<taskflow/taskflow.hpp>)
 #include <taskflow/taskflow.hpp>
-#define SEMINAR_HAS_TASKFLOW 1
-#else
-#define SEMINAR_HAS_TASKFLOW 0
-#endif
+#include <vector>
 
 namespace seminar {
 
@@ -43,7 +31,6 @@ inline Graph benchmark_graph(size_t num_nodes, size_t fanout) {
     return Graph{std::move(offsets), std::move(edges), num_nodes};
 }
 
-#if SEMINAR_HAS_OPENMP
 inline std::vector<uint64_t> histogram_openmp(const std::vector<uint64_t>& data, uint64_t buckets,
                                               int threads) {
     omp_set_num_threads(threads);
@@ -200,9 +187,7 @@ inline uint64_t bfs_openmp(const Graph& graph, uint32_t source, int threads) {
 
     return visited_count;
 }
-#endif
 
-#if SEMINAR_HAS_TASKFLOW
 inline std::vector<uint64_t> histogram_taskflow(const std::vector<uint64_t>& data, uint64_t buckets,
                                                 unsigned num_threads, unsigned num_tasks) {
     size_t n = data.size();
@@ -381,6 +366,5 @@ inline uint64_t bfs_taskflow(const Graph& graph, uint32_t source, unsigned num_t
 
     return visited_count;
 }
-#endif
 
 }  // namespace seminar
