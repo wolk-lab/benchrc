@@ -14,17 +14,6 @@ Tooling:
 
 - Rust benchmarks use Criterion
 - C++ benchmarks use Google Benchmark
-- Nix development shell provisions the required toolchain
-
-## Development shell
-
-Enter the benchmark environment with:
-
-```bash
-nix develop --no-pure-eval
-```
-
-That shell provides Rust, CMake, Google Benchmark, OpenMP, and Taskflow headers.
 
 ## Rust: Criterion
 
