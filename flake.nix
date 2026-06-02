@@ -29,17 +29,15 @@
                   ninja
                   pkg-config
                   taskflow
+                  rustc
+                  cargo
+                  rustfmt
+                  rust-analyzer
+                  clippy
                 ];
 
                 env.CPLUS_INCLUDE_PATH = "${pkgs.taskflow}/include";
                 env.CMAKE_INCLUDE_PATH = "${pkgs.taskflow}/include";
-
-                languages.rust.enable = true;
-
-                enterShell = ''
-                  echo "Rust benchmarks: cargo bench --bench histogram|mergesort|stencil|bfs"
-                  echo "C++ benchmarks: cmake -S cpp -B cpp/build && cmake --build cpp/build --target histogram_benchmarks mergesort_benchmarks stencil_benchmarks bfs_benchmarks"
-                '';
               })
             ];
           };
