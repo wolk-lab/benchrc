@@ -1,0 +1,9 @@
+/target
+cpp/*/openmp
+cpp/*/taskflow
+cpp/build
+.direnv
+.devenv
+*.csv
+datasets/
+results/
