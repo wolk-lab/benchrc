@@ -18,7 +18,7 @@
 ## Histogram 1M
 
 - Rust seq: `0.442 ms`, CI `[0.442, 0.442]`
-- C++ seq: `0.498 ms`, stddev `± 0.051`
+- C++ seq: `0.498 ms`, stddev `+- 0.051`
 
 | Threads | Rust rayon ms | C++ OpenMP ms | C++ Taskflow ms |
 |---|---:|---:|---:|
