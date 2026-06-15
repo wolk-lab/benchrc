@@ -1,0 +1,64 @@
+    Finished `bench` profile [optimized] target(s) in 0.05s
+     Running benches/bfs.rs (target/release/deps/bfs-1f7e603c4da40c0b)
+Gnuplot not found, using plotters backend
+Benchmarking bfs/seq/64K_fanout4
+Benchmarking bfs/seq/64K_fanout4: Warming up for 3.0000 s
+Benchmarking bfs/seq/64K_fanout4: Collecting 30 samples in estimated 10.020 s (17k iterations)
+Benchmarking bfs/seq/64K_fanout4: Analyzing
+bfs/seq/64K_fanout4     time:   [583.04 µs 583.16 µs 583.25 µs]
+                        thrpt:  [112.36 Melem/s 112.38 Melem/s 112.40 Melem/s]
+                 change:
+                        time:   [−1.0473% −0.8781% −0.7141%] (p = 0.00 < 0.05)
+                        thrpt:  [+0.7192% +0.8859% +1.0583%]
+                        Change within noise threshold.
+Benchmarking bfs/rayon_1t/64K_fanout4
+Benchmarking bfs/rayon_1t/64K_fanout4: Warming up for 3.0000 s
+Benchmarking bfs/rayon_1t/64K_fanout4: Collecting 30 samples in estimated 10.846 s (3720 iterations)
+Benchmarking bfs/rayon_1t/64K_fanout4: Analyzing
+bfs/rayon_1t/64K_fanout4
+                        time:   [2.9142 ms 2.9164 ms 2.9185 ms]
+                        thrpt:  [22.455 Melem/s 22.471 Melem/s 22.488 Melem/s]
+                 change:
+                        time:   [−0.2068% −0.0971% +0.0181%] (p = 0.10 > 0.05)
+                        thrpt:  [−0.0181% +0.0972% +0.2072%]
+                        No change in performance detected.
+Found 2 outliers among 30 measurements (6.67%)
+  1 (3.33%) low mild
+  1 (3.33%) high mild
+Benchmarking bfs/rayon_2t/64K_fanout4
+Benchmarking bfs/rayon_2t/64K_fanout4: Warming up for 3.0000 s
+Benchmarking bfs/rayon_2t/64K_fanout4: Collecting 30 samples in estimated 16.755 s (930 iterations)
+Benchmarking bfs/rayon_2t/64K_fanout4: Analyzing
+bfs/rayon_2t/64K_fanout4
+                        time:   [17.520 ms 17.612 ms 17.723 ms]
+                        thrpt:  [3.6978 Melem/s 3.7210 Melem/s 3.7406 Melem/s]
+                 change:
+                        time:   [−18.148% −17.711% −17.274%] (p = 0.00 < 0.05)
+                        thrpt:  [+20.881% +21.523% +22.172%]
+                        Performance has improved.
+Benchmarking bfs/rayon_4t/64K_fanout4
+Benchmarking bfs/rayon_4t/64K_fanout4: Warming up for 3.0000 s
+Benchmarking bfs/rayon_4t/64K_fanout4: Collecting 30 samples in estimated 11.068 s (180 iterations)
+Benchmarking bfs/rayon_4t/64K_fanout4: Analyzing
+bfs/rayon_4t/64K_fanout4
+                        time:   [60.615 ms 60.789 ms 60.991 ms]
+                        thrpt:  [1.0745 Melem/s 1.0781 Melem/s 1.0812 Melem/s]
+                 change:
+                        time:   [+12.780% +13.248% +13.698%] (p = 0.00 < 0.05)
+                        thrpt:  [−12.048% −11.698% −11.332%]
+                        Performance has regressed.
+Found 4 outliers among 30 measurements (13.33%)
+  1 (3.33%) low mild
+  3 (10.00%) high severe
+Benchmarking bfs/rayon_8t/64K_fanout4
+Benchmarking bfs/rayon_8t/64K_fanout4: Warming up for 3.0000 s
+Benchmarking bfs/rayon_8t/64K_fanout4: Collecting 30 samples in estimated 10.808 s (150 iterations)
+Benchmarking bfs/rayon_8t/64K_fanout4: Analyzing
+bfs/rayon_8t/64K_fanout4
+                        time:   [72.128 ms 72.299 ms 72.469 ms]
+                        thrpt:  [904.33 Kelem/s 906.46 Kelem/s 908.60 Kelem/s]
+                 change:
+                        time:   [+0.3846% +0.6090% +0.8392%] (p = 0.00 < 0.05)
+                        thrpt:  [−0.8322% −0.6053% −0.3831%]
+                        Change within noise threshold.
+

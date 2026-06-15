@@ -1,0 +1,84 @@
+2026-06-15T08:24:30-06:00
+Running ./cpp/build/histogram_benchmarks
+Run on (32 X 2994.42 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 512 KiB (x16)
+  L3 Unified 16384 KiB (x8)
+Load Average: 1.10, 2.10, 2.17
+------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                          Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------------------------------------------------------------
+HistogramSeq/1M/min_warmup_time:3.000/repeats:30/real_time_mean               497808 ns       497794 ns           30 items_per_second=0/s
+HistogramSeq/1M/min_warmup_time:3.000/repeats:30/real_time_median             505359 ns       505347 ns           30 items_per_second=0/s
+HistogramSeq/1M/min_warmup_time:3.000/repeats:30/real_time_stddev              50514 ns        50515 ns           30 items_per_second=0/s
+HistogramSeq/1M/min_warmup_time:3.000/repeats:30/real_time_cv                  10.15 %         10.15 %            30 items_per_second=-nan%
+HistogramSeq/10M/min_warmup_time:3.000/repeats:30/real_time_mean             9987092 ns      9985818 ns           30 items_per_second=0/s
+HistogramSeq/10M/min_warmup_time:3.000/repeats:30/real_time_median           9840377 ns      9839281 ns           30 items_per_second=0/s
+HistogramSeq/10M/min_warmup_time:3.000/repeats:30/real_time_stddev            216109 ns       217073 ns           30 items_per_second=0/s
+HistogramSeq/10M/min_warmup_time:3.000/repeats:30/real_time_cv                  2.16 %          2.17 %            30 items_per_second=-nan%
+HistogramOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean         4477938 ns      4477872 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_median       4471219 ns      4471206 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev         17380 ns        17393 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv              0.39 %          0.39 %            30 items_per_second=-nan%
+HistogramOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean         2355157 ns      2355123 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_median       2353632 ns      2353626 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev          6070 ns         6060 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv              0.26 %          0.26 %            30 items_per_second=-nan%
+HistogramOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean         1231008 ns      1230991 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_median       1228793 ns      1228775 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev          6503 ns         6494 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv              0.53 %          0.53 %            30 items_per_second=-nan%
+HistogramOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean          637786 ns       637778 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_median        637775 ns       637764 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev           206 ns          205 ns           30 items_per_second=0/s
+HistogramOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv              0.03 %          0.03 %            30 items_per_second=-nan%
+HistogramOpenMP/10M/1/min_warmup_time:3.000/repeats:30/real_time_mean       46191187 ns     46189185 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/1/min_warmup_time:3.000/repeats:30/real_time_median     46066476 ns     46065154 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/1/min_warmup_time:3.000/repeats:30/real_time_stddev       330428 ns       330573 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/1/min_warmup_time:3.000/repeats:30/real_time_cv             0.72 %          0.72 %            30 items_per_second=-nan%
+HistogramOpenMP/10M/2/min_warmup_time:3.000/repeats:30/real_time_mean       23881977 ns     23880734 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/2/min_warmup_time:3.000/repeats:30/real_time_median     23878414 ns     23877125 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/2/min_warmup_time:3.000/repeats:30/real_time_stddev        23237 ns        23306 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/2/min_warmup_time:3.000/repeats:30/real_time_cv             0.10 %          0.10 %            30 items_per_second=-nan%
+HistogramOpenMP/10M/4/min_warmup_time:3.000/repeats:30/real_time_mean       11937764 ns     11937119 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/4/min_warmup_time:3.000/repeats:30/real_time_median     11923445 ns     11922868 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/4/min_warmup_time:3.000/repeats:30/real_time_stddev        54124 ns        54137 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/4/min_warmup_time:3.000/repeats:30/real_time_cv             0.45 %          0.45 %            30 items_per_second=-nan%
+HistogramOpenMP/10M/8/min_warmup_time:3.000/repeats:30/real_time_mean        6067162 ns      6066977 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/8/min_warmup_time:3.000/repeats:30/real_time_median      6066790 ns      6066611 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/8/min_warmup_time:3.000/repeats:30/real_time_stddev         4085 ns         4002 ns           30 items_per_second=0/s
+HistogramOpenMP/10M/8/min_warmup_time:3.000/repeats:30/real_time_cv             0.07 %          0.07 %            30 items_per_second=-nan%
+HistogramTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean       4763586 ns        28140 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_median     4717440 ns        28259 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev       81033 ns          466 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv            1.70 %          1.66 %            30 items_per_second=-nan%
+HistogramTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean       2548326 ns        33514 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_median     2624349 ns        33283 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev      117608 ns          573 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv            4.62 %          1.71 %            30 items_per_second=-nan%
+HistogramTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean       1357860 ns        27527 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_median     1367705 ns        27426 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev       42514 ns          656 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv            3.13 %          2.38 %            30 items_per_second=-nan%
+HistogramTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean        733642 ns        30624 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_median      734540 ns        30051 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev       26525 ns         2907 ns           30 items_per_second=0/s
+HistogramTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv            3.62 %          9.49 %            30 items_per_second=-nan%
+HistogramTaskflow/10M/1/min_warmup_time:3.000/repeats:30/real_time_mean     45903217 ns        29626 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/1/min_warmup_time:3.000/repeats:30/real_time_median   45845297 ns        29565 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/1/min_warmup_time:3.000/repeats:30/real_time_stddev     481326 ns          678 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/1/min_warmup_time:3.000/repeats:30/real_time_cv           1.05 %          2.29 %            30 items_per_second=-nan%
+HistogramTaskflow/10M/2/min_warmup_time:3.000/repeats:30/real_time_mean     23359516 ns        34937 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/2/min_warmup_time:3.000/repeats:30/real_time_median   23158507 ns        35098 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/2/min_warmup_time:3.000/repeats:30/real_time_stddev     623276 ns          491 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/2/min_warmup_time:3.000/repeats:30/real_time_cv           2.67 %          1.41 %            30 items_per_second=-nan%
+HistogramTaskflow/10M/4/min_warmup_time:3.000/repeats:30/real_time_mean     13070294 ns        43529 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/4/min_warmup_time:3.000/repeats:30/real_time_median   13319295 ns        43515 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/4/min_warmup_time:3.000/repeats:30/real_time_stddev     473083 ns          340 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/4/min_warmup_time:3.000/repeats:30/real_time_cv           3.62 %          0.78 %            30 items_per_second=-nan%
+HistogramTaskflow/10M/8/min_warmup_time:3.000/repeats:30/real_time_mean      7208926 ns        51480 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/8/min_warmup_time:3.000/repeats:30/real_time_median    7229689 ns        50045 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/8/min_warmup_time:3.000/repeats:30/real_time_stddev     192953 ns         6119 ns           30 items_per_second=0/s
+HistogramTaskflow/10M/8/min_warmup_time:3.000/repeats:30/real_time_cv           2.68 %         11.89 %            30 items_per_second=-nan%

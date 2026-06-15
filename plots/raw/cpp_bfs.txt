@@ -1,0 +1,48 @@
+2026-06-15T07:56:15-06:00
+Running ./cpp/build/bfs_benchmarks
+Run on (32 X 2994.42 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 512 KiB (x16)
+  L3 Unified 16384 KiB (x8)
+Load Average: 3.41, 3.41, 3.11
+------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                    Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------------------------------------------------------
+BfsSeq/64K/min_warmup_time:3.000/repeats:30/real_time_mean             1210344 ns      1210311 ns           30 items_per_second=0/s
+BfsSeq/64K/min_warmup_time:3.000/repeats:30/real_time_median           1193837 ns      1193784 ns           30 items_per_second=0/s
+BfsSeq/64K/min_warmup_time:3.000/repeats:30/real_time_stddev             43988 ns        43990 ns           30 items_per_second=0/s
+BfsSeq/64K/min_warmup_time:3.000/repeats:30/real_time_cv                  3.63 %          3.63 %            30 items_per_second=-nan%
+BfsOpenMP/64K/1/min_warmup_time:3.000/repeats:30/real_time_mean        8419711 ns      8419453 ns           30 items_per_second=0/s
+BfsOpenMP/64K/1/min_warmup_time:3.000/repeats:30/real_time_median      8404052 ns      8403683 ns           30 items_per_second=0/s
+BfsOpenMP/64K/1/min_warmup_time:3.000/repeats:30/real_time_stddev        77875 ns        77853 ns           30 items_per_second=0/s
+BfsOpenMP/64K/1/min_warmup_time:3.000/repeats:30/real_time_cv             0.92 %          0.92 %            30 items_per_second=-nan%
+BfsOpenMP/64K/2/min_warmup_time:3.000/repeats:30/real_time_mean       37661707 ns     37660942 ns           30 items_per_second=0/s
+BfsOpenMP/64K/2/min_warmup_time:3.000/repeats:30/real_time_median     37857174 ns     37856676 ns           30 items_per_second=0/s
+BfsOpenMP/64K/2/min_warmup_time:3.000/repeats:30/real_time_stddev       695821 ns       695918 ns           30 items_per_second=0/s
+BfsOpenMP/64K/2/min_warmup_time:3.000/repeats:30/real_time_cv             1.85 %          1.85 %            30 items_per_second=-nan%
+BfsOpenMP/64K/4/min_warmup_time:3.000/repeats:30/real_time_mean       61694381 ns     61693150 ns           30 items_per_second=0/s
+BfsOpenMP/64K/4/min_warmup_time:3.000/repeats:30/real_time_median     61559979 ns     61558475 ns           30 items_per_second=0/s
+BfsOpenMP/64K/4/min_warmup_time:3.000/repeats:30/real_time_stddev       557914 ns       558031 ns           30 items_per_second=0/s
+BfsOpenMP/64K/4/min_warmup_time:3.000/repeats:30/real_time_cv             0.90 %          0.90 %            30 items_per_second=-nan%
+BfsOpenMP/64K/8/min_warmup_time:3.000/repeats:30/real_time_mean      139705470 ns    139702682 ns           30 items_per_second=0/s
+BfsOpenMP/64K/8/min_warmup_time:3.000/repeats:30/real_time_median    140696842 ns    140694151 ns           30 items_per_second=0/s
+BfsOpenMP/64K/8/min_warmup_time:3.000/repeats:30/real_time_stddev      4526683 ns      4526518 ns           30 items_per_second=0/s
+BfsOpenMP/64K/8/min_warmup_time:3.000/repeats:30/real_time_cv             3.24 %          3.24 %            30 items_per_second=-nan%
+BfsTaskflow/64K/1/min_warmup_time:3.000/repeats:30/real_time_mean    169433487 ns    109549242 ns           30 items_per_second=0/s
+BfsTaskflow/64K/1/min_warmup_time:3.000/repeats:30/real_time_median  168480617 ns    108914065 ns           30 items_per_second=0/s
+BfsTaskflow/64K/1/min_warmup_time:3.000/repeats:30/real_time_stddev    4474712 ns      3982861 ns           30 items_per_second=0/s
+BfsTaskflow/64K/1/min_warmup_time:3.000/repeats:30/real_time_cv           2.64 %          3.64 %            30 items_per_second=-nan%
+BfsTaskflow/64K/2/min_warmup_time:3.000/repeats:30/real_time_mean    196791708 ns    119394222 ns           30 items_per_second=0/s
+BfsTaskflow/64K/2/min_warmup_time:3.000/repeats:30/real_time_median  195904299 ns    119708523 ns           30 items_per_second=0/s
+BfsTaskflow/64K/2/min_warmup_time:3.000/repeats:30/real_time_stddev    4125901 ns      2300902 ns           30 items_per_second=0/s
+BfsTaskflow/64K/2/min_warmup_time:3.000/repeats:30/real_time_cv           2.10 %          1.93 %            30 items_per_second=-nan%
+BfsTaskflow/64K/4/min_warmup_time:3.000/repeats:30/real_time_mean    255417294 ns    142104125 ns           30 items_per_second=0/s
+BfsTaskflow/64K/4/min_warmup_time:3.000/repeats:30/real_time_median  255384263 ns    141999363 ns           30 items_per_second=0/s
+BfsTaskflow/64K/4/min_warmup_time:3.000/repeats:30/real_time_stddev    3546401 ns      2799578 ns           30 items_per_second=0/s
+BfsTaskflow/64K/4/min_warmup_time:3.000/repeats:30/real_time_cv           1.39 %          1.97 %            30 items_per_second=-nan%
+BfsTaskflow/64K/8/min_warmup_time:3.000/repeats:30/real_time_mean    261369721 ns    154616355 ns           30 items_per_second=0/s
+BfsTaskflow/64K/8/min_warmup_time:3.000/repeats:30/real_time_median  262131126 ns    155278029 ns           30 items_per_second=0/s
+BfsTaskflow/64K/8/min_warmup_time:3.000/repeats:30/real_time_stddev    4316267 ns      3964262 ns           30 items_per_second=0/s
+BfsTaskflow/64K/8/min_warmup_time:3.000/repeats:30/real_time_cv           1.65 %          2.56 %            30 items_per_second=-nan%

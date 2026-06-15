@@ -1,0 +1,48 @@
+2026-06-15T07:52:56-06:00
+Running ./cpp/build/stencil_benchmarks
+Run on (32 X 2994.42 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x16)
+  L1 Instruction 32 KiB (x16)
+  L2 Unified 512 KiB (x16)
+  L3 Unified 16384 KiB (x8)
+Load Average: 3.13, 3.59, 3.11
+---------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                       Time             CPU   Iterations UserCounters...
+---------------------------------------------------------------------------------------------------------------------------------
+StencilSeq/1M/min_warmup_time:3.000/repeats:30/real_time_mean            22904195 ns     22902269 ns           30 items_per_second=0/s
+StencilSeq/1M/min_warmup_time:3.000/repeats:30/real_time_median          22904745 ns     22903376 ns           30 items_per_second=0/s
+StencilSeq/1M/min_warmup_time:3.000/repeats:30/real_time_stddev             15627 ns        15575 ns           30 items_per_second=0/s
+StencilSeq/1M/min_warmup_time:3.000/repeats:30/real_time_cv                  0.07 %          0.07 %            30 items_per_second=-nan%
+StencilOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean       24051922 ns     24050660 ns           30 items_per_second=0/s
+StencilOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_median     24051830 ns     24051563 ns           30 items_per_second=0/s
+StencilOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev        41446 ns        41180 ns           30 items_per_second=0/s
+StencilOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv             0.17 %          0.17 %            30 items_per_second=-nan%
+StencilOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean       12975494 ns     12975119 ns           30 items_per_second=0/s
+StencilOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_median     12975678 ns     12975487 ns           30 items_per_second=0/s
+StencilOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev         7305 ns         7296 ns           30 items_per_second=0/s
+StencilOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv             0.06 %          0.06 %            30 items_per_second=-nan%
+StencilOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean        7723333 ns      7723288 ns           30 items_per_second=0/s
+StencilOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_median      7723764 ns      7723714 ns           30 items_per_second=0/s
+StencilOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev         4066 ns         4061 ns           30 items_per_second=0/s
+StencilOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv             0.05 %          0.05 %            30 items_per_second=-nan%
+StencilOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean        5336837 ns      5336803 ns           30 items_per_second=0/s
+StencilOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_median      5336356 ns      5336344 ns           30 items_per_second=0/s
+StencilOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev         3926 ns         3928 ns           30 items_per_second=0/s
+StencilOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv             0.07 %          0.07 %            30 items_per_second=-nan%
+StencilTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean     29279867 ns      2440228 ns           30 items_per_second=0/s
+StencilTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_median   29295738 ns      2468906 ns           30 items_per_second=0/s
+StencilTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev     195617 ns        51620 ns           30 items_per_second=0/s
+StencilTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv           0.67 %          2.12 %            30 items_per_second=-nan%
+StencilTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean     16407701 ns      2184986 ns           30 items_per_second=0/s
+StencilTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_median   16403093 ns      2142309 ns           30 items_per_second=0/s
+StencilTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev     256753 ns        76013 ns           30 items_per_second=0/s
+StencilTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv           1.56 %          3.48 %            30 items_per_second=-nan%
+StencilTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean     10235802 ns      2155505 ns           30 items_per_second=0/s
+StencilTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_median   10242056 ns      2157859 ns           30 items_per_second=0/s
+StencilTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev      61197 ns        16225 ns           30 items_per_second=0/s
+StencilTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv           0.60 %          0.75 %            30 items_per_second=-nan%
+StencilTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean      6837743 ns      2069954 ns           30 items_per_second=0/s
+StencilTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_median    6834540 ns      2069983 ns           30 items_per_second=0/s
+StencilTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev      38508 ns         7710 ns           30 items_per_second=0/s
+StencilTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv           0.56 %          0.37 %            30 items_per_second=-nan%

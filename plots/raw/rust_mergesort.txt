@@ -1,0 +1,73 @@
+    Finished `bench` profile [optimized] target(s) in 0.04s
+     Running benches/mergesort.rs (target/release/deps/mergesort-25f80c63e9e9a8ad)
+Gnuplot not found, using plotters backend
+Benchmarking mergesort/seq/1M_u32_cutoff1024
+Benchmarking mergesort/seq/1M_u32_cutoff1024: Warming up for 3.0000 s
+Benchmarking mergesort/seq/1M_u32_cutoff1024: Collecting 30 samples in estimated 11.507 s (180 iterations)
+Benchmarking mergesort/seq/1M_u32_cutoff1024: Analyzing
+mergesort/seq/1M_u32_cutoff1024
+                        time:   [61.921 ms 61.934 ms 61.947 ms]
+                        thrpt:  [16.143 Melem/s 16.146 Melem/s 16.150 Melem/s]
+                 change:
+                        time:   [−0.4700% −0.4334% −0.3946%] (p = 0.00 < 0.05)
+                        thrpt:  [+0.3962% +0.4353% +0.4722%]
+                        Change within noise threshold.
+Found 4 outliers among 30 measurements (13.33%)
+  1 (3.33%) high mild
+  3 (10.00%) high severe
+Benchmarking mergesort/rayon_1t/1M_u32_cutoff1024
+Benchmarking mergesort/rayon_1t/1M_u32_cutoff1024: Warming up for 3.0000 s
+Benchmarking mergesort/rayon_1t/1M_u32_cutoff1024: Collecting 30 samples in estimated 10.935 s (180 iterations)
+Benchmarking mergesort/rayon_1t/1M_u32_cutoff1024: Analyzing
+mergesort/rayon_1t/1M_u32_cutoff1024
+                        time:   [60.058 ms 60.064 ms 60.071 ms]
+                        thrpt:  [16.647 Melem/s 16.649 Melem/s 16.651 Melem/s]
+                 change:
+                        time:   [−0.3777% −0.3596% −0.3423%] (p = 0.00 < 0.05)
+                        thrpt:  [+0.3435% +0.3609% +0.3791%]
+                        Change within noise threshold.
+Benchmarking mergesort/rayon_2t/1M_u32_cutoff1024
+Benchmarking mergesort/rayon_2t/1M_u32_cutoff1024: Warming up for 3.0000 s
+
+Warning: Unable to complete 30 samples in 10.0s. You may wish to increase target time to 15.7s, enable flat sampling, or reduce sample count to 10.
+Benchmarking mergesort/rayon_2t/1M_u32_cutoff1024: Collecting 30 samples in estimated 15.652 s (465 iterations)
+Benchmarking mergesort/rayon_2t/1M_u32_cutoff1024: Analyzing
+mergesort/rayon_2t/1M_u32_cutoff1024
+                        time:   [33.710 ms 33.716 ms 33.722 ms]
+                        thrpt:  [29.654 Melem/s 29.660 Melem/s 29.665 Melem/s]
+                 change:
+                        time:   [+2.9531% +3.0441% +3.1381%] (p = 0.00 < 0.05)
+                        thrpt:  [−3.0426% −2.9542% −2.8684%]
+                        Performance has regressed.
+Found 3 outliers among 30 measurements (10.00%)
+  2 (6.67%) high mild
+  1 (3.33%) high severe
+Benchmarking mergesort/rayon_4t/1M_u32_cutoff1024
+Benchmarking mergesort/rayon_4t/1M_u32_cutoff1024: Warming up for 3.0000 s
+
+Warning: Unable to complete 30 samples in 10.0s. You may wish to increase target time to 10.1s, enable flat sampling, or reduce sample count to 20.
+Benchmarking mergesort/rayon_4t/1M_u32_cutoff1024: Collecting 30 samples in estimated 10.106 s (465 iterations)
+Benchmarking mergesort/rayon_4t/1M_u32_cutoff1024: Analyzing
+mergesort/rayon_4t/1M_u32_cutoff1024
+                        time:   [21.073 ms 21.194 ms 21.315 ms]
+                        thrpt:  [46.914 Melem/s 47.184 Melem/s 47.453 Melem/s]
+                 change:
+                        time:   [−0.6926% −0.0807% +0.5468%] (p = 0.81 > 0.05)
+                        thrpt:  [−0.5439% +0.0808% +0.6974%]
+                        No change in performance detected.
+Benchmarking mergesort/rayon_8t/1M_u32_cutoff1024
+Benchmarking mergesort/rayon_8t/1M_u32_cutoff1024: Warming up for 3.0000 s
+Benchmarking mergesort/rayon_8t/1M_u32_cutoff1024: Collecting 30 samples in estimated 15.704 s (930 iterations)
+Benchmarking mergesort/rayon_8t/1M_u32_cutoff1024: Analyzing
+mergesort/rayon_8t/1M_u32_cutoff1024
+                        time:   [16.466 ms 16.501 ms 16.534 ms]
+                        thrpt:  [60.482 Melem/s 60.601 Melem/s 60.732 Melem/s]
+                 change:
+                        time:   [−3.4068% −2.8106% −2.1444%] (p = 0.00 < 0.05)
+                        thrpt:  [+2.1914% +2.8919% +3.5269%]
+                        Performance has improved.
+Found 4 outliers among 30 measurements (13.33%)
+  1 (3.33%) low mild
+  1 (3.33%) high mild
+  2 (6.67%) high severe
+
