@@ -120,10 +120,28 @@ static uint64_t checksum_histogram(const std::vector<uint64_t>& hist) {
     return sum;
 }
 
+static uint64_t checksum_ordered_u64(const std::vector<uint64_t>& data) {
+    uint64_t hash = FNV_OFFSET;
+    for (size_t index = 0; index < data.size(); index++) {
+        hash ^= mix64(data[index] ^ static_cast<uint64_t>(index));
+        hash *= FNV_PRIME;
+    }
+    return hash;
+}
+
 static uint64_t checksum_sum_u32(const std::vector<uint32_t>& data) {
     uint64_t sum = 0;
     for (auto value : data) sum += mix64(static_cast<uint64_t>(value));
     return sum;
+}
+
+static uint64_t checksum_ordered_u32(const std::vector<uint32_t>& data) {
+    uint64_t hash = FNV_OFFSET;
+    for (size_t index = 0; index < data.size(); index++) {
+        hash ^= mix64(static_cast<uint64_t>(data[index]) ^ static_cast<uint64_t>(index));
+        hash *= FNV_PRIME;
+    }
+    return hash;
 }
 
 static uint64_t checksum_sum_f64(const std::vector<double>& data) {

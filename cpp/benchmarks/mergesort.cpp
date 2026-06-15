@@ -11,7 +11,8 @@ static void BM_MergesortSeq_1M(benchmark::State& state) {
     for (auto _ : state) {
         auto values = source;
         seminar::mergesort_sequential(values, kMergesortCutoff);
-        benchmark::DoNotOptimize(values.data());
+        benchmark::DoNotOptimize(is_sorted(values));
+        benchmark::DoNotOptimize(checksum_ordered_u32(values));
         benchmark::ClobberMemory();
     }
 }
@@ -24,7 +25,8 @@ static void BM_MergesortOpenMP_1M(benchmark::State& state) {
     for (auto _ : state) {
         auto values = source;
         seminar::mergesort_openmp(values, kMergesortCutoff, threads);
-        benchmark::DoNotOptimize(values.data());
+        benchmark::DoNotOptimize(is_sorted(values));
+        benchmark::DoNotOptimize(checksum_ordered_u32(values));
         benchmark::ClobberMemory();
     }
 }
@@ -38,7 +40,8 @@ static void BM_MergesortTaskflow_1M(benchmark::State& state) {
     for (auto _ : state) {
         auto values = source;
         seminar::mergesort_taskflow(values, kMergesortCutoff, executor);
-        benchmark::DoNotOptimize(values.data());
+        benchmark::DoNotOptimize(is_sorted(values));
+        benchmark::DoNotOptimize(checksum_ordered_u32(values));
         benchmark::ClobberMemory();
     }
 }

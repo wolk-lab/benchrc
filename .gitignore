@@ -5,3 +5,4 @@ cpp/build
 *.csv
 datasets/
 results/
+scripts/plot_benchmarks.py

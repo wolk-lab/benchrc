@@ -10,7 +10,7 @@ static void BM_HistogramSeq_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_sequential(data, kHistogramBuckets);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -21,7 +21,7 @@ static void BM_HistogramSeq_10M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_sequential(data, kHistogramBuckets);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -33,7 +33,7 @@ static void BM_HistogramOpenMP_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_openmp(data, kHistogramBuckets, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -45,7 +45,7 @@ static void BM_HistogramOpenMP_10M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_openmp(data, kHistogramBuckets, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -58,7 +58,7 @@ static void BM_HistogramTaskflow_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_taskflow(data, kHistogramBuckets, executor, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -71,7 +71,7 @@ static void BM_HistogramTaskflow_10M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::histogram_taskflow(data, kHistogramBuckets, executor, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_ordered_u64(result));
         benchmark::ClobberMemory();
     }
 }

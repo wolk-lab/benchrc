@@ -10,7 +10,7 @@ static void BM_StencilSeq_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::stencil_sequential(data, kStencilIterations, kStencilRadius);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_sum_f64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -22,7 +22,7 @@ static void BM_StencilOpenMP_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::stencil_openmp(data, kStencilIterations, kStencilRadius, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_sum_f64(result));
         benchmark::ClobberMemory();
     }
 }
@@ -35,7 +35,7 @@ static void BM_StencilTaskflow_1M(benchmark::State& state) {
 
     for (auto _ : state) {
         auto result = seminar::stencil_taskflow(data, kStencilIterations, kStencilRadius, executor, threads);
-        benchmark::DoNotOptimize(result.data());
+        benchmark::DoNotOptimize(checksum_sum_f64(result));
         benchmark::ClobberMemory();
     }
 }

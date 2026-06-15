@@ -10,18 +10,18 @@ use std::hint::black_box;
 
 fn histogram_benches(c: &mut criterion::Criterion) {
     let cases = [
-        ("1M_uniform_256", histogram_uniform_1m().as_slice(), 256usize),
-        ("10M_uniform_256", histogram_uniform_10m().as_slice(), 256usize),
+        ("1M_uniform_256", histogram_uniform_1m().as_slice()),
+        ("10M_uniform_256", histogram_uniform_10m().as_slice()),
     ];
 
     let mut group = c.benchmark_group("histogram");
     configure_group(&mut group);
 
-    for (label, data, buckets) in &cases {
+    for (label, data) in &cases {
         set_element_throughput(&mut group, data.len());
 
         group.bench_function(BenchmarkId::new("seq", label), |b| {
-            b.iter(|| black_box(histogram_seq::histogram(black_box(data), *buckets)));
+            b.iter(|| black_box(histogram_seq::histogram(black_box(data), 256)));
         });
 
         for &threads in &RAYON_THREAD_COUNTS {
@@ -31,7 +31,7 @@ fn histogram_benches(c: &mut criterion::Criterion) {
                 .unwrap();
             group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), label), |b| {
                 b.iter(|| {
-                    pool.install(|| black_box(histogram_rayon::histogram(black_box(data), *buckets)));
+                    pool.install(|| black_box(histogram_rayon::histogram(black_box(data), 256)));
                 });
             });
         }
