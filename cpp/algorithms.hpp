@@ -12,8 +12,17 @@
 
 namespace seminar {
 
+inline std::vector<uint64_t> histogram_sequential(const std::vector<uint64_t>& data,
+                                                  uint64_t buckets) {
+    std::vector<uint64_t> hist(buckets, 0);
+    for (uint64_t value : data) {
+        hist[static_cast<size_t>(value % buckets)]++;
+    }
+    return hist;
+}
+
 inline std::vector<uint64_t> histogram_openmp(const std::vector<uint64_t>& data, uint64_t buckets,
-                                              int threads) {
+                                               int threads) {
     omp_set_num_threads(threads);
 
     size_t n = data.size();
@@ -40,6 +49,46 @@ inline std::vector<uint64_t> histogram_openmp(const std::vector<uint64_t>& data,
     }
 
     return global;
+}
+
+template <typename T>
+inline void mergesort_sequential_inner(T* arr, T* buf, size_t n, size_t cutoff) {
+    if (n <= 1) {
+        return;
+    }
+    if (n <= cutoff) {
+        std::sort(arr, arr + n);
+        return;
+    }
+
+    size_t mid = n / 2;
+    mergesort_sequential_inner(arr, buf, mid, cutoff);
+    mergesort_sequential_inner(arr + mid, buf + mid, n - mid, cutoff);
+
+    size_t i = 0;
+    size_t j = mid;
+    size_t k = 0;
+    while (i < mid && j < n) {
+        if (arr[i] <= arr[j]) {
+            buf[k++] = arr[i++];
+        } else {
+            buf[k++] = arr[j++];
+        }
+    }
+    while (i < mid) {
+        buf[k++] = arr[i++];
+    }
+    while (j < n) {
+        buf[k++] = arr[j++];
+    }
+
+    std::copy(buf, buf + n, arr);
+}
+
+template <typename T>
+inline void mergesort_sequential(std::vector<T>& data, size_t cutoff) {
+    std::vector<T> buf(data.size());
+    mergesort_sequential_inner(data.data(), buf.data(), data.size(), cutoff);
 }
 
 template <typename T>
@@ -93,8 +142,31 @@ inline void mergesort_openmp(std::vector<T>& data, size_t cutoff, int threads) {
     }
 }
 
+inline std::vector<double> stencil_sequential(const std::vector<double>& values,
+                                              size_t iterations, size_t radius) {
+    size_t n = values.size();
+    std::vector<double> current = values;
+    std::vector<double> next(n, 0.0);
+
+    for (size_t iter = 0; iter < iterations; iter++) {
+        for (size_t i = 0; i < n; i++) {
+            size_t start = (i < radius) ? 0 : (i - radius);
+            size_t end = std::min(i + radius + 1, n);
+            size_t count = end - start;
+            double sum = 0.0;
+            for (size_t j = start; j < end; j++) {
+                sum += current[j];
+            }
+            next[i] = sum / static_cast<double>(count);
+        }
+        std::swap(current, next);
+    }
+
+    return current;
+}
+
 inline std::vector<double> stencil_openmp(const std::vector<double>& values, size_t iterations,
-                                          size_t radius, int threads) {
+                                           size_t radius, int threads) {
     omp_set_num_threads(threads);
 
     size_t n = values.size();
@@ -117,6 +189,33 @@ inline std::vector<double> stencil_openmp(const std::vector<double>& values, siz
     }
 
     return current;
+}
+
+inline uint64_t bfs_sequential(const Graph& graph, uint32_t source) {
+    std::vector<uint8_t> visited(graph.num_nodes, 0);
+    std::vector<uint32_t> frontier{source};
+    uint64_t visited_count = 1;
+
+    visited[source] = 1;
+
+    while (!frontier.empty()) {
+        std::vector<uint32_t> next_frontier;
+        for (uint32_t node : frontier) {
+            size_t start = graph.offsets[node];
+            size_t end = graph.offsets[node + 1];
+            for (size_t edge = start; edge < end; edge++) {
+                uint32_t neighbor = graph.edges[edge];
+                if (!visited[neighbor]) {
+                    visited[neighbor] = 1;
+                    next_frontier.push_back(neighbor);
+                    visited_count++;
+                }
+            }
+        }
+        frontier.swap(next_frontier);
+    }
+
+    return visited_count;
 }
 
 inline uint64_t bfs_openmp(const Graph& graph, uint32_t source, int threads) {
@@ -170,11 +269,10 @@ inline uint64_t bfs_openmp(const Graph& graph, uint32_t source, int threads) {
 }
 
 inline std::vector<uint64_t> histogram_taskflow(const std::vector<uint64_t>& data, uint64_t buckets,
-                                                unsigned num_threads, unsigned num_tasks) {
+                                                tf::Executor& executor, unsigned num_tasks) {
     size_t n = data.size();
     std::vector<std::vector<uint64_t>> locals(num_tasks, std::vector<uint64_t>(buckets, 0));
 
-    tf::Executor executor(num_threads);
     tf::Taskflow taskflow;
     std::vector<tf::Task> tasks;
     size_t chunk_size = (n + num_tasks - 1) / num_tasks;
@@ -246,8 +344,7 @@ inline tf::Task build_mergesort_taskflow(tf::Taskflow& taskflow, T* arr, T* buf,
 }
 
 template <typename T>
-inline void mergesort_taskflow(std::vector<T>& data, size_t cutoff, unsigned num_threads) {
-    tf::Executor executor(num_threads);
+inline void mergesort_taskflow(std::vector<T>& data, size_t cutoff, tf::Executor& executor) {
     tf::Taskflow taskflow;
     std::vector<T> buf(data.size());
     build_mergesort_taskflow(taskflow, data.data(), buf.data(), data.size(), cutoff);
@@ -255,42 +352,56 @@ inline void mergesort_taskflow(std::vector<T>& data, size_t cutoff, unsigned num
 }
 
 inline std::vector<double> stencil_taskflow(const std::vector<double>& values, size_t iterations,
-                                            size_t radius, unsigned num_threads) {
+                                            size_t radius, tf::Executor& executor,
+                                            unsigned num_threads) {
     size_t n = values.size();
     std::vector<double> current = values;
     std::vector<double> next(n, 0.0);
 
-    tf::Executor executor(num_threads);
     tf::Taskflow taskflow;
-    std::vector<tf::Task> stages;
+    size_t num_tasks = std::max<size_t>(1, std::min(n, static_cast<size_t>(num_threads)));
+    size_t chunk_size = (n + num_tasks - 1) / num_tasks;
+    tf::Task previous_swap;
+    bool has_previous_swap = false;
 
     for (size_t iter = 0; iter < iterations; iter++) {
-        auto stage = taskflow.emplace([&current, &next, n, radius, num_threads]() {
-            #pragma omp parallel for num_threads(num_threads)
-            for (size_t i = 0; i < n; i++) {
-                size_t start = (i < radius) ? 0 : (i - radius);
-                size_t end = std::min(i + radius + 1, n);
-                size_t count = end - start;
-                double sum = 0.0;
-                for (size_t j = start; j < end; j++) {
-                    sum += current[j];
+        std::vector<tf::Task> stage_tasks;
+        stage_tasks.reserve(num_tasks);
+        for (size_t task = 0; task < num_tasks; task++) {
+            size_t start = task * chunk_size;
+            size_t end = std::min(start + chunk_size, n);
+            auto stage_task = taskflow.emplace([&current, &next, start, end, radius, n]() {
+                for (size_t i = start; i < end; i++) {
+                    size_t window_start = (i < radius) ? 0 : (i - radius);
+                    size_t window_end = std::min(i + radius + 1, n);
+                    size_t count = window_end - window_start;
+                    double sum = 0.0;
+                    for (size_t j = window_start; j < window_end; j++) {
+                        sum += current[j];
+                    }
+                    next[i] = sum / static_cast<double>(count);
                 }
-                next[i] = sum / static_cast<double>(count);
+            });
+            if (has_previous_swap) {
+                previous_swap.precede(stage_task);
             }
-            std::swap(current, next);
-        });
-        stages.push_back(stage);
-    }
+            stage_tasks.push_back(stage_task);
+        }
 
-    for (size_t i = 1; i < stages.size(); i++) {
-        stages[i - 1].precede(stages[i]);
+        auto swap_task = taskflow.emplace([&current, &next]() { std::swap(current, next); });
+        for (auto& stage_task : stage_tasks) {
+            stage_task.precede(swap_task);
+        }
+        previous_swap = swap_task;
+        has_previous_swap = true;
     }
 
     executor.run(taskflow).wait();
     return current;
 }
 
-inline uint64_t bfs_taskflow(const Graph& graph, uint32_t source, unsigned num_threads) {
+inline uint64_t bfs_taskflow(const Graph& graph, uint32_t source, tf::Executor& executor,
+                             unsigned num_threads) {
     size_t n = graph.num_nodes;
     auto visited = std::make_unique<std::atomic<uint32_t>[]>(n);
     for (size_t i = 0; i < n; i++) {
@@ -304,13 +415,11 @@ inline uint64_t bfs_taskflow(const Graph& graph, uint32_t source, unsigned num_t
     frontier.push_back(source);
     visited_count++;
 
-    tf::Executor executor(num_threads);
-
     while (!frontier.empty()) {
         std::vector<uint32_t> next_frontier;
         std::mutex mutex;
 
-        size_t num_tasks = std::min(frontier.size(), static_cast<size_t>(num_threads * 4));
+        size_t num_tasks = std::max<size_t>(1, std::min(frontier.size(), static_cast<size_t>(num_threads)));
         size_t chunk_size = (frontier.size() + num_tasks - 1) / num_tasks;
 
         tf::Taskflow taskflow;

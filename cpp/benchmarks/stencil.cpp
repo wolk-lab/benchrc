@@ -4,6 +4,17 @@ namespace {
 
 using namespace seminar::benchmarks;
 
+static void BM_StencilSeq_1M(benchmark::State& state) {
+    const auto& data = stencil_f64_1m();
+    state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(data.size()));
+
+    for (auto _ : state) {
+        auto result = seminar::stencil_sequential(data, kStencilIterations, kStencilRadius);
+        benchmark::DoNotOptimize(result.data());
+        benchmark::ClobberMemory();
+    }
+}
+
 static void BM_StencilOpenMP_1M(benchmark::State& state) {
     const auto& data = stencil_f64_1m();
     int threads = static_cast<int>(state.range(0));
@@ -19,10 +30,11 @@ static void BM_StencilOpenMP_1M(benchmark::State& state) {
 static void BM_StencilTaskflow_1M(benchmark::State& state) {
     const auto& data = stencil_f64_1m();
     unsigned threads = static_cast<unsigned>(state.range(0));
+    tf::Executor executor(threads);
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(data.size()));
 
     for (auto _ : state) {
-        auto result = seminar::stencil_taskflow(data, kStencilIterations, kStencilRadius, threads);
+        auto result = seminar::stencil_taskflow(data, kStencilIterations, kStencilRadius, executor, threads);
         benchmark::DoNotOptimize(result.data());
         benchmark::ClobberMemory();
     }
@@ -34,6 +46,7 @@ int main(int argc, char** argv) {
     seminar::benchmarks::verify_stencil();
     benchmark::Initialize(&argc, argv);
 
+    configure_benchmark(benchmark::RegisterBenchmark("StencilSeq/1M", &BM_StencilSeq_1M));
     add_thread_args(benchmark::RegisterBenchmark("StencilOpenMP/1M", &BM_StencilOpenMP_1M));
     add_thread_args(benchmark::RegisterBenchmark("StencilTaskflow/1M", &BM_StencilTaskflow_1M));
 
