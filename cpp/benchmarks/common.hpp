@@ -19,7 +19,7 @@ inline void add_thread_args(benchmark::internal::Benchmark* bench) {
     for (int threads : kThreadCounts) {
         bench->Arg(threads);
     }
-    bench->UseRealTime()->MinWarmUpTime(1.0);
+    bench->UseRealTime()->MinWarmUpTime(3.0)->Repetitions(30)->DisplayAggregatesOnly(true);
 }
 
 inline const std::vector<uint64_t>& histogram_uniform_1m() {
