@@ -4,7 +4,7 @@ use std::time::Duration;
 pub const RAYON_THREAD_COUNTS: [usize; 6] = [1, 2, 4, 8, 16, 32];
 
 pub fn configure_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurement::WallTime>) {
-    group.sample_size(5);
+    group.sample_size(10);
     group.warm_up_time(Duration::from_secs(10));
     group.measurement_time(Duration::from_secs(60));
 }

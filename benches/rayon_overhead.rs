@@ -144,7 +144,7 @@ fn rayon_join_recursive_mergesort(c: &mut Criterion) {
 
 criterion_group!(
     name = rayon_overhead;
-    config = Criterion::default().sample_size(5).warm_up_time(Duration::from_secs(10)).measurement_time(Duration::from_secs(60));
+    config = Criterion::default().sample_size(10).warm_up_time(Duration::from_secs(10)).measurement_time(Duration::from_secs(60));
     targets =
         rayon_join_empty,
         rayon_join_inc,

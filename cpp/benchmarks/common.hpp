@@ -16,7 +16,7 @@ constexpr size_t kStencilIterations = 10;
 constexpr size_t kStencilRadius = 1;
 
 inline benchmark::internal::Benchmark* configure_benchmark(benchmark::internal::Benchmark* bench) {
-    return bench->UseRealTime()->MinWarmUpTime(10.0)->MinTime(60.0)->Repetitions(5)->DisplayAggregatesOnly(true);
+    return bench->UseRealTime()->MinWarmUpTime(10.0)->MinTime(60.0)->Repetitions(10)->DisplayAggregatesOnly(true);
 }
 
 inline void add_thread_args(benchmark::internal::Benchmark* bench) {
