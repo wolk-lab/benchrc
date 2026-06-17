@@ -26,7 +26,7 @@ mkdir -p "${PLOTS_RAW}"
 
 # ── Dataset generation ──────────────────────────────────────────────────────
 if [[ -z "${SKIP_DATASETS:-}" ]]; then
-    echo "=== Generating datasets (100M variants included) ==="
+    echo "=== Generating datasets (1B variants included) ==="
     python3 "${ROOT}/scripts/generate_datasets.py" --output-dir "${DATASETS_DIR}"
     echo ""
 else

@@ -1,7 +1,7 @@
 mod common;
 
 use benchrc::benchmarks::{
-    common::stencil_f64_1b,
+    common::{checksum_sum_f64, stencil_f64_1b},
     stencil::{rayon as stencil_rayon, sequential as stencil_seq},
 };
 use common::{configure_group, default_criterion, set_element_throughput, RAYON_THREAD_COUNTS};
@@ -32,6 +32,15 @@ fn bench_stencil_group(group: &mut criterion::BenchmarkGroup<'_, criterion::meas
 }
 
 fn stencil_benches(c: &mut criterion::Criterion) {
+    // Verify correctness before benchmarking
+    let data = stencil_f64_1b();
+    let seq_result = stencil_seq::stencil(data, 10, 1);
+    assert_eq!(seq_result.len(), data.len(), "stencil output length mismatch");
+    let seq_cs = checksum_sum_f64(&seq_result);
+    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let rayon_result = pool.install(|| stencil_rayon::stencil(data, 10, 1));
+    assert_eq!(checksum_sum_f64(&rayon_result), seq_cs, "rayon stencil verification failed");
+
     let mut group = c.benchmark_group("stencil");
     configure_group(&mut group);
 

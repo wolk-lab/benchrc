@@ -3,7 +3,7 @@ mod common;
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BatchSize, BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
-    common::mergesort_u32_1b,
+    common::{checksum_sum_u32, is_sorted_u32, mergesort_u32_1b},
     mergesort::{rayon as mergesort_rayon, sequential as mergesort_seq},
 };
 use std::hint::black_box;
@@ -41,6 +41,17 @@ fn bench_mergesort_group(group: &mut criterion::BenchmarkGroup<'_, criterion::me
 }
 
 fn mergesort_benches(c: &mut criterion::Criterion) {
+    // Verify correctness before benchmarking
+    let source = mergesort_u32_1b();
+    let expected = checksum_sum_u32(source);
+    let mut verify = source.to_vec();
+    mergesort_seq::mergesort_u32(&mut verify, 1024);
+    assert!(is_sorted_u32(&verify) && checksum_sum_u32(&verify) == expected, "sequential mergesort verification failed");
+    let mut verify2 = source.to_vec();
+    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    pool.install(|| mergesort_rayon::mergesort_u32(&mut verify2, 1024));
+    assert!(is_sorted_u32(&verify2) && checksum_sum_u32(&verify2) == expected, "rayon mergesort verification failed");
+
     let mut group = c.benchmark_group("mergesort");
     configure_group(&mut group);
 

@@ -29,6 +29,14 @@ fn bench_bfs_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurem
 }
 
 fn bfs_benches(c: &mut criterion::Criterion) {
+    // Verify correctness before benchmarking
+    let graph = bfs_graph_6m();
+    let seq_visited = bfs_seq::bfs(graph, 0);
+    assert_eq!(seq_visited, graph.num_nodes as u64, "sequential BFS verification failed");
+    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let rayon_visited = pool.install(|| bfs_rayon::bfs(graph, 0));
+    assert_eq!(rayon_visited, graph.num_nodes as u64, "rayon BFS verification failed");
+
     let mut group = c.benchmark_group("bfs");
     configure_group(&mut group);
 
