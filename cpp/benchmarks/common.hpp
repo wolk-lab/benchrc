@@ -9,7 +9,7 @@
 
 namespace seminar::benchmarks {
 
-constexpr int kThreadCounts[] = {1, 2, 4, 8};
+constexpr int kThreadCounts[] = {1, 2, 4, 8, 16, 32};
 constexpr size_t kHistogramBuckets = 256;
 constexpr size_t kMergesortCutoff = 1024;
 constexpr size_t kStencilIterations = 10;

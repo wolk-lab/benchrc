@@ -1,7 +1,7 @@
 use criterion::{Criterion, Throughput};
 use std::time::Duration;
 
-pub const RAYON_THREAD_COUNTS: [usize; 4] = [1, 2, 4, 8];
+pub const RAYON_THREAD_COUNTS: [usize; 6] = [1, 2, 4, 8, 16, 32];
 
 pub fn configure_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurement::WallTime>) {
     group.sample_size(30);
