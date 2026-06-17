@@ -1,5 +1,6 @@
 use criterion::{criterion_group, criterion_main, BatchSize, Criterion};
 use std::hint::black_box;
+use std::time::Duration;
 use rayon::prelude::*;
 use benchrc::benchmarks::common::{histogram_uniform_1m, rayon_overhead_u32_10k};
 
@@ -143,7 +144,7 @@ fn rayon_join_recursive_mergesort(c: &mut Criterion) {
 
 criterion_group!(
     name = rayon_overhead;
-    config = Criterion::default().sample_size(100);
+    config = Criterion::default().sample_size(5).warm_up_time(Duration::from_secs(10)).measurement_time(Duration::from_secs(60));
     targets =
         rayon_join_empty,
         rayon_join_inc,
