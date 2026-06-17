@@ -3,18 +3,15 @@ mod common;
 use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_element_throughput};
 use criterion::{BatchSize, BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
-    common::mergesort_u32_1m,
+    common::mergesort_u32_1b,
     mergesort::{rayon as mergesort_rayon, sequential as mergesort_seq},
 };
 use std::hint::black_box;
 
-fn mergesort_benches(c: &mut criterion::Criterion) {
-    let source = mergesort_u32_1m();
-    let mut group = c.benchmark_group("mergesort");
-    configure_group(&mut group);
-    set_element_throughput(&mut group, source.len());
+fn bench_mergesort_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurement::WallTime>, label: &str, source: &[u32]) {
+    set_element_throughput(group, source.len());
 
-    group.bench_function(BenchmarkId::new("seq", "1M_u32_cutoff1024"), |b| {
+    group.bench_function(BenchmarkId::new("seq", label), |b| {
         b.iter_batched(
             || source.to_vec(),
             |mut values| {
@@ -30,7 +27,7 @@ fn mergesort_benches(c: &mut criterion::Criterion) {
             .num_threads(threads)
             .build()
             .unwrap();
-        group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), "1M_u32_cutoff1024"), |b| {
+        group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), label), |b| {
             b.iter_batched(
                 || source.to_vec(),
                 |mut values| {
@@ -41,6 +38,13 @@ fn mergesort_benches(c: &mut criterion::Criterion) {
             );
         });
     }
+}
+
+fn mergesort_benches(c: &mut criterion::Criterion) {
+    let mut group = c.benchmark_group("mergesort");
+    configure_group(&mut group);
+
+    bench_mergesort_group(&mut group, "1B_u32_cutoff1024", mergesort_u32_1b());
 
     group.finish();
 }

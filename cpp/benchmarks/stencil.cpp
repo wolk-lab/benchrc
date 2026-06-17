@@ -4,8 +4,8 @@ namespace {
 
 using namespace seminar::benchmarks;
 
-static void BM_StencilSeq_1M(benchmark::State& state) {
-    const auto& data = stencil_f64_1m();
+static void BM_StencilSeq_1B(benchmark::State& state) {
+    const auto& data = stencil_f64_1b();
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(data.size()));
 
     for (auto _ : state) {
@@ -15,8 +15,8 @@ static void BM_StencilSeq_1M(benchmark::State& state) {
     }
 }
 
-static void BM_StencilOpenMP_1M(benchmark::State& state) {
-    const auto& data = stencil_f64_1m();
+static void BM_StencilOpenMP_1B(benchmark::State& state) {
+    const auto& data = stencil_f64_1b();
     int threads = static_cast<int>(state.range(0));
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(data.size()));
 
@@ -27,8 +27,8 @@ static void BM_StencilOpenMP_1M(benchmark::State& state) {
     }
 }
 
-static void BM_StencilTaskflow_1M(benchmark::State& state) {
-    const auto& data = stencil_f64_1m();
+static void BM_StencilTaskflow_1B(benchmark::State& state) {
+    const auto& data = stencil_f64_1b();
     unsigned threads = static_cast<unsigned>(state.range(0));
     tf::Executor executor(threads);
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(data.size()));
@@ -46,9 +46,9 @@ int main(int argc, char** argv) {
     seminar::benchmarks::verify_stencil();
     benchmark::Initialize(&argc, argv);
 
-    configure_benchmark(benchmark::RegisterBenchmark("StencilSeq/1M", &BM_StencilSeq_1M));
-    add_thread_args(benchmark::RegisterBenchmark("StencilOpenMP/1M", &BM_StencilOpenMP_1M));
-    add_thread_args(benchmark::RegisterBenchmark("StencilTaskflow/1M", &BM_StencilTaskflow_1M));
+    configure_benchmark(benchmark::RegisterBenchmark("StencilSeq/1B", &BM_StencilSeq_1B));
+    add_thread_args(benchmark::RegisterBenchmark("StencilOpenMP/1B", &BM_StencilOpenMP_1B));
+    add_thread_args(benchmark::RegisterBenchmark("StencilTaskflow/1B", &BM_StencilTaskflow_1B));
 
     benchmark::RunSpecifiedBenchmarks();
     benchmark::Shutdown();

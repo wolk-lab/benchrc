@@ -4,18 +4,15 @@ use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_elemen
 use criterion::{BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
     bfs::{rayon as bfs_rayon, sequential as bfs_seq},
-    common::bfs_graph_64k,
+    common::bfs_graph_6m,
 };
 use std::hint::black_box;
 
-fn bfs_benches(c: &mut criterion::Criterion) {
-    let graph = bfs_graph_64k();
-    let mut group = c.benchmark_group("bfs");
-    configure_group(&mut group);
-    set_element_throughput(&mut group, graph.num_nodes);
+fn bench_bfs_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurement::WallTime>, label: &str, graph: &benchrc::benchmarks::common::Graph) {
+    set_element_throughput(group, graph.num_nodes);
 
-    group.bench_function(BenchmarkId::new("seq", "64K_fanout4"), |b| {
-        b.iter(|| black_box(bfs_seq::bfs(black_box(&graph), 0)));
+    group.bench_function(BenchmarkId::new("seq", label), |b| {
+        b.iter(|| black_box(bfs_seq::bfs(black_box(graph), 0)));
     });
 
     for &threads in &RAYON_THREAD_COUNTS {
@@ -23,12 +20,19 @@ fn bfs_benches(c: &mut criterion::Criterion) {
             .num_threads(threads)
             .build()
             .unwrap();
-        group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), "64K_fanout4"), |b| {
+        group.bench_function(BenchmarkId::new(format!("rayon_{threads}t"), label), |b| {
             b.iter(|| {
-                pool.install(|| black_box(bfs_rayon::bfs(black_box(&graph), 0)));
+                pool.install(|| black_box(bfs_rayon::bfs(black_box(graph), 0)));
             });
         });
     }
+}
+
+fn bfs_benches(c: &mut criterion::Criterion) {
+    let mut group = c.benchmark_group("bfs");
+    configure_group(&mut group);
+
+    bench_bfs_group(&mut group, "6M_fanout4", bfs_graph_6m());
 
     group.finish();
 }

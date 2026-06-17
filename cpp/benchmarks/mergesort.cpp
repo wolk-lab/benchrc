@@ -4,8 +4,8 @@ namespace {
 
 using namespace seminar::benchmarks;
 
-static void BM_MergesortSeq_1M(benchmark::State& state) {
-    const auto& source = mergesort_u32_1m();
+static void BM_MergesortSeq_1B(benchmark::State& state) {
+    const auto& source = mergesort_u32_1b();
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(source.size()));
 
     for (auto _ : state) {
@@ -17,8 +17,8 @@ static void BM_MergesortSeq_1M(benchmark::State& state) {
     }
 }
 
-static void BM_MergesortOpenMP_1M(benchmark::State& state) {
-    const auto& source = mergesort_u32_1m();
+static void BM_MergesortOpenMP_1B(benchmark::State& state) {
+    const auto& source = mergesort_u32_1b();
     int threads = static_cast<int>(state.range(0));
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(source.size()));
 
@@ -31,8 +31,8 @@ static void BM_MergesortOpenMP_1M(benchmark::State& state) {
     }
 }
 
-static void BM_MergesortTaskflow_1M(benchmark::State& state) {
-    const auto& source = mergesort_u32_1m();
+static void BM_MergesortTaskflow_1B(benchmark::State& state) {
+    const auto& source = mergesort_u32_1b();
     unsigned threads = static_cast<unsigned>(state.range(0));
     tf::Executor executor(threads);
     state.SetItemsProcessed(static_cast<int64_t>(state.iterations()) * static_cast<int64_t>(source.size()));
@@ -52,9 +52,9 @@ int main(int argc, char** argv) {
     seminar::benchmarks::verify_mergesort();
     benchmark::Initialize(&argc, argv);
 
-    configure_benchmark(benchmark::RegisterBenchmark("MergesortSeq/1M", &BM_MergesortSeq_1M));
-    add_thread_args(benchmark::RegisterBenchmark("MergesortOpenMP/1M", &BM_MergesortOpenMP_1M));
-    add_thread_args(benchmark::RegisterBenchmark("MergesortTaskflow/1M", &BM_MergesortTaskflow_1M));
+    configure_benchmark(benchmark::RegisterBenchmark("MergesortSeq/1B", &BM_MergesortSeq_1B));
+    add_thread_args(benchmark::RegisterBenchmark("MergesortOpenMP/1B", &BM_MergesortOpenMP_1B));
+    add_thread_args(benchmark::RegisterBenchmark("MergesortTaskflow/1B", &BM_MergesortTaskflow_1B));
 
     benchmark::RunSpecifiedBenchmarks();
     benchmark::Shutdown();

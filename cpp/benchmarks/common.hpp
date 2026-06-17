@@ -31,23 +31,23 @@ inline const std::vector<uint64_t>& histogram_uniform_1m() {
     return data;
 }
 
-inline const std::vector<uint64_t>& histogram_uniform_10m() {
-    static const auto data = load_u64_dataset("histogram_uniform_10m.u64le.bin", 10'000'000);
+inline const std::vector<uint64_t>& histogram_uniform_1b() {
+    static const auto data = load_u64_dataset("histogram_uniform_1b.u64le.bin", 1'000'000'000);
     return data;
 }
 
-inline const std::vector<uint32_t>& mergesort_u32_1m() {
-    static const auto data = load_u32_dataset("mergesort_u32_1m.u32le.bin", 1'000'000);
+inline const std::vector<uint32_t>& mergesort_u32_1b() {
+    static const auto data = load_u32_dataset("mergesort_u32_1b.u32le.bin", 1'000'000'000);
     return data;
 }
 
-inline const std::vector<double>& stencil_f64_1m() {
-    static const auto data = load_f64_dataset("stencil_f64_1m.f64le.bin", 1'000'000);
+inline const std::vector<double>& stencil_f64_1b() {
+    static const auto data = load_f64_dataset("stencil_f64_1b.f64le.bin", 1'000'000'000);
     return data;
 }
 
-inline const Graph& bfs_graph_64k() {
-    static const auto graph = load_graph_dataset("bfs_64k_fanout4.graph.bin");
+inline const Graph& bfs_graph_6m() {
+    static const auto graph = load_graph_dataset("bfs_6m_fanout4.graph.bin");
     return graph;
 }
 
@@ -72,7 +72,7 @@ inline void verify_histogram() {
 
 inline void verify_mergesort() {
     {
-        auto values = mergesort_u32_1m();
+        auto values = mergesort_u32_1b();
         auto expected = checksum_sum_u32(values);
         seminar::mergesort_sequential(values, kMergesortCutoff);
         if (!is_sorted(values) || checksum_sum_u32(values) != expected) {
@@ -81,7 +81,7 @@ inline void verify_mergesort() {
     }
 
     {
-        auto values = mergesort_u32_1m();
+        auto values = mergesort_u32_1b();
         auto expected = checksum_sum_u32(values);
         seminar::mergesort_openmp(values, kMergesortCutoff, 1);
         if (!is_sorted(values) || checksum_sum_u32(values) != expected) {
@@ -90,7 +90,7 @@ inline void verify_mergesort() {
     }
 
     {
-        auto values = mergesort_u32_1m();
+        auto values = mergesort_u32_1b();
         auto expected = checksum_sum_u32(values);
         tf::Executor executor(1);
         seminar::mergesort_taskflow(values, kMergesortCutoff, executor);
@@ -101,33 +101,33 @@ inline void verify_mergesort() {
 }
 
 inline void verify_stencil() {
-    auto seq_result = seminar::stencil_sequential(stencil_f64_1m(), kStencilIterations, kStencilRadius);
+    auto seq_result = seminar::stencil_sequential(stencil_f64_1b(), kStencilIterations, kStencilRadius);
     benchmark::DoNotOptimize(seq_result.data());
 
     auto openmp_result =
-        seminar::stencil_openmp(stencil_f64_1m(), kStencilIterations, kStencilRadius, 1);
+        seminar::stencil_openmp(stencil_f64_1b(), kStencilIterations, kStencilRadius, 1);
     benchmark::DoNotOptimize(openmp_result.data());
 
     tf::Executor executor(1);
     auto taskflow_result =
-        seminar::stencil_taskflow(stencil_f64_1m(), kStencilIterations, kStencilRadius, executor, 1);
+        seminar::stencil_taskflow(stencil_f64_1b(), kStencilIterations, kStencilRadius, executor, 1);
     benchmark::DoNotOptimize(taskflow_result.data());
 }
 
 inline void verify_bfs() {
-    auto seq_visited = seminar::bfs_sequential(bfs_graph_64k(), 0);
-    if (seq_visited != bfs_graph_64k().num_nodes) {
+    auto seq_visited = seminar::bfs_sequential(bfs_graph_6m(), 0);
+    if (seq_visited != bfs_graph_6m().num_nodes) {
         throw std::runtime_error("sequential BFS verification failed");
     }
 
-    auto openmp_visited = seminar::bfs_openmp(bfs_graph_64k(), 0, 1);
-    if (openmp_visited != bfs_graph_64k().num_nodes) {
+    auto openmp_visited = seminar::bfs_openmp(bfs_graph_6m(), 0, 1);
+    if (openmp_visited != bfs_graph_6m().num_nodes) {
         throw std::runtime_error("OpenMP BFS verification failed");
     }
 
     tf::Executor executor(1);
-    auto taskflow_visited = seminar::bfs_taskflow(bfs_graph_64k(), 0, executor, 1);
-    if (taskflow_visited != bfs_graph_64k().num_nodes) {
+    auto taskflow_visited = seminar::bfs_taskflow(bfs_graph_6m(), 0, executor, 1);
+    if (taskflow_visited != bfs_graph_6m().num_nodes) {
         throw std::runtime_error("Taskflow BFS verification failed");
     }
 }

@@ -118,19 +118,19 @@ pub fn histogram_uniform_1m() -> &'static Vec<u64> {
     DATA.get_or_init(|| load_u64_dataset("histogram_uniform_1m.u64le.bin", 1_000_000))
 }
 
-pub fn histogram_uniform_10m() -> &'static Vec<u64> {
+pub fn histogram_uniform_1b() -> &'static Vec<u64> {
     static DATA: OnceLock<Vec<u64>> = OnceLock::new();
-    DATA.get_or_init(|| load_u64_dataset("histogram_uniform_10m.u64le.bin", 10_000_000))
+    DATA.get_or_init(|| load_u64_dataset("histogram_uniform_1b.u64le.bin", 1_000_000_000))
 }
 
-pub fn mergesort_u32_1m() -> &'static Vec<u32> {
+pub fn mergesort_u32_1b() -> &'static Vec<u32> {
     static DATA: OnceLock<Vec<u32>> = OnceLock::new();
-    DATA.get_or_init(|| load_u32_dataset("mergesort_u32_1m.u32le.bin", 1_000_000))
+    DATA.get_or_init(|| load_u32_dataset("mergesort_u32_1b.u32le.bin", 1_000_000_000))
 }
 
-pub fn stencil_f64_1m() -> &'static Vec<f64> {
+pub fn stencil_f64_1b() -> &'static Vec<f64> {
     static DATA: OnceLock<Vec<f64>> = OnceLock::new();
-    DATA.get_or_init(|| load_f64_dataset("stencil_f64_1m.f64le.bin", 1_000_000))
+    DATA.get_or_init(|| load_f64_dataset("stencil_f64_1b.f64le.bin", 1_000_000_000))
 }
 
 pub fn rayon_overhead_u32_10k() -> &'static Vec<u32> {
@@ -138,9 +138,9 @@ pub fn rayon_overhead_u32_10k() -> &'static Vec<u32> {
     DATA.get_or_init(|| load_u32_dataset("rayon_overhead_u32_10k.u32le.bin", 10_000))
 }
 
-pub fn bfs_graph_64k() -> &'static Graph {
+pub fn bfs_graph_6m() -> &'static Graph {
     static DATA: OnceLock<Graph> = OnceLock::new();
-    DATA.get_or_init(|| load_graph_dataset("bfs_64k_fanout4.graph.bin"))
+    DATA.get_or_init(|| load_graph_dataset("bfs_6m_fanout4.graph.bin"))
 }
 
 fn mix64(mut value: u64) -> u64 {
