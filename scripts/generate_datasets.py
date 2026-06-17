@@ -14,10 +14,15 @@ DEFAULT_OUTPUT_DIR = ROOT / "datasets"
 HISTOGRAM_BUCKETS = 256
 HISTOGRAM_1M = 1_000_000
 HISTOGRAM_10M = 10_000_000
+HISTOGRAM_1B = 1_000_000_000
 MERGESORT_1M = 1_000_000
+MERGESORT_1B = 1_000_000_000
 STENCIL_1M = 1_000_000
+STENCIL_1B = 1_000_000_000
 RAYON_OVERHEAD_10K = 10_000
+RAYON_OVERHEAD_1M = 1_000_000
 BFS_NUM_NODES = 65_536
+BFS_6M_NODES = 6_553_600
 BFS_FANOUT = 4
 SEED = 42
 
@@ -94,6 +99,13 @@ def main() -> None:
     _generate("stencil_f64_1m.f64le.bin", output_dir, lambda path: _write_f64_dataset(path, STENCIL_1M, SEED))
     _generate("rayon_overhead_u32_10k.u32le.bin", output_dir, lambda path: _write_u32_dataset(path, RAYON_OVERHEAD_10K, SEED))
     _generate("bfs_64k_fanout4.graph.bin", output_dir, lambda path: _write_bfs_graph(path, BFS_NUM_NODES, BFS_FANOUT))
+
+    # 100x scaled datasets
+    _generate("histogram_uniform_1b.u64le.bin", output_dir, lambda path: _write_histogram_dataset(path, HISTOGRAM_1B))
+    _generate("mergesort_u32_1b.u32le.bin", output_dir, lambda path: _write_u32_dataset(path, MERGESORT_1B, SEED))
+    _generate("stencil_f64_1b.f64le.bin", output_dir, lambda path: _write_f64_dataset(path, STENCIL_1B, SEED))
+    _generate("rayon_overhead_u32_1m.u32le.bin", output_dir, lambda path: _write_u32_dataset(path, RAYON_OVERHEAD_1M, SEED))
+    _generate("bfs_6m_fanout4.graph.bin", output_dir, lambda path: _write_bfs_graph(path, BFS_6M_NODES, BFS_FANOUT))
 
 
 if __name__ == "__main__":
