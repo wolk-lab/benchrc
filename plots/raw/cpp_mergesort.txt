@@ -1,48 +1,65 @@
-2026-06-15T07:49:32-06:00
-Running ./cpp/build/mergesort_benchmarks
-Run on (32 X 2994.42 MHz CPU s)
+2026-06-18T05:21:31-06:00
+Running /users/def4alt/seminar/cpp/build/mergesort_benchmarks
+Run on (32 X 2994.28 MHz CPU s)
 CPU Caches:
   L1 Data 32 KiB (x16)
   L1 Instruction 32 KiB (x16)
   L2 Unified 512 KiB (x16)
   L3 Unified 16384 KiB (x8)
-Load Average: 3.94, 4.19, 3.16
------------------------------------------------------------------------------------------------------------------------------------
-Benchmark                                                                         Time             CPU   Iterations UserCounters...
------------------------------------------------------------------------------------------------------------------------------------
-MergesortSeq/1M/min_warmup_time:3.000/repeats:30/real_time_mean            83182810 ns     83180260 ns           30 items_per_second=0/s
-MergesortSeq/1M/min_warmup_time:3.000/repeats:30/real_time_median          83169783 ns     83166490 ns           30 items_per_second=0/s
-MergesortSeq/1M/min_warmup_time:3.000/repeats:30/real_time_stddev             66661 ns        67062 ns           30 items_per_second=0/s
-MergesortSeq/1M/min_warmup_time:3.000/repeats:30/real_time_cv                  0.08 %          0.08 %            30 items_per_second=-nan%
-MergesortOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean       82650356 ns     82647452 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_median     82648517 ns     82645001 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev        15164 ns        14672 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv             0.02 %          0.02 %            30 items_per_second=-nan%
-MergesortOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean       44863432 ns     44861602 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_median     44858789 ns     44857384 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev        67015 ns        66907 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv             0.15 %          0.15 %            30 items_per_second=-nan%
-MergesortOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean       35092951 ns     25001208 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_median     35153243 ns     24921562 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev       929000 ns      1723486 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv             2.65 %          6.89 %            30 items_per_second=-nan%
-MergesortOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean       23014061 ns     19201415 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_median     22999193 ns     19298824 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev       259647 ns       584017 ns           30 items_per_second=0/s
-MergesortOpenMP/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv             1.13 %          3.04 %            30 items_per_second=-nan%
-MergesortTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_mean     83757381 ns      1923113 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_median   83771427 ns      1929483 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_stddev     445326 ns        39295 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/1/min_warmup_time:3.000/repeats:30/real_time_cv           0.53 %          2.04 %            30 items_per_second=-nan%
-MergesortTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_mean     47819105 ns      1977124 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_median   47818494 ns      1982325 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_stddev     104744 ns        37663 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/2/min_warmup_time:3.000/repeats:30/real_time_cv           0.22 %          1.90 %            30 items_per_second=-nan%
-MergesortTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_mean     29804238 ns      1997811 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_median   29799327 ns      2002512 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_stddev      46233 ns        24871 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/4/min_warmup_time:3.000/repeats:30/real_time_cv           0.16 %          1.24 %            30 items_per_second=-nan%
-MergesortTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_mean     20476498 ns      1853946 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_median   20467591 ns      1851771 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_stddev      40768 ns        38812 ns           30 items_per_second=0/s
-MergesortTaskflow/1M/8/min_warmup_time:3.000/repeats:30/real_time_cv           0.20 %          2.09 %            30 items_per_second=-nan%
+Load Average: 1.00, 3.29, 8.26
+***WARNING*** ASLR is enabled, the results may have unreproducible noise in them.
+-------------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                           Time             CPU   Iterations UserCounters...
+-------------------------------------------------------------------------------------------------------------------------------------
+MergesortSeq/1B/min_warmup_time:10.000/repeats:10/real_time_mean           1.3404e+11 ns   1.3403e+11 ns           10 items_per_second=0/s
+MergesortSeq/1B/min_warmup_time:10.000/repeats:10/real_time_median         1.3410e+11 ns   1.3409e+11 ns           10 items_per_second=0/s
+MergesortSeq/1B/min_warmup_time:10.000/repeats:10/real_time_stddev          296839522 ns    298006099 ns           10 items_per_second=0/s
+MergesortSeq/1B/min_warmup_time:10.000/repeats:10/real_time_cv                   0.22 %          0.22 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/1/min_warmup_time:10.000/repeats:10/real_time_mean      1.3468e+11 ns   1.3467e+11 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/1/min_warmup_time:10.000/repeats:10/real_time_median    1.3471e+11 ns   1.3471e+11 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/1/min_warmup_time:10.000/repeats:10/real_time_stddev     161383910 ns    161363166 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/1/min_warmup_time:10.000/repeats:10/real_time_cv              0.12 %          0.12 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/2/min_warmup_time:10.000/repeats:10/real_time_mean      7.3167e+10 ns   7.2795e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/2/min_warmup_time:10.000/repeats:10/real_time_median    7.3112e+10 ns   7.2787e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/2/min_warmup_time:10.000/repeats:10/real_time_stddev      94894732 ns     79847651 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/2/min_warmup_time:10.000/repeats:10/real_time_cv              0.13 %          0.11 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/4/min_warmup_time:10.000/repeats:10/real_time_mean      5.2714e+10 ns   2.9031e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/4/min_warmup_time:10.000/repeats:10/real_time_median    5.2054e+10 ns   2.9043e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/4/min_warmup_time:10.000/repeats:10/real_time_stddev    2165505361 ns     48258601 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/4/min_warmup_time:10.000/repeats:10/real_time_cv              4.11 %          0.17 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/8/min_warmup_time:10.000/repeats:10/real_time_mean      3.6669e+10 ns   1.6079e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/8/min_warmup_time:10.000/repeats:10/real_time_median    3.5485e+10 ns   1.6655e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/8/min_warmup_time:10.000/repeats:10/real_time_stddev    2483398271 ns   1694476965 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/8/min_warmup_time:10.000/repeats:10/real_time_cv              6.77 %         10.54 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/16/min_warmup_time:10.000/repeats:10/real_time_mean     2.6279e+10 ns   1.5482e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/16/min_warmup_time:10.000/repeats:10/real_time_median   2.6299e+10 ns   1.5971e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/16/min_warmup_time:10.000/repeats:10/real_time_stddev    616860942 ns   1536079474 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/16/min_warmup_time:10.000/repeats:10/real_time_cv             2.35 %          9.92 %            10 items_per_second=0.00%
+MergesortOpenMP/1B/32/min_warmup_time:10.000/repeats:10/real_time_mean     2.1828e+10 ns   1.1066e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/32/min_warmup_time:10.000/repeats:10/real_time_median   2.1857e+10 ns   1.1237e+10 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/32/min_warmup_time:10.000/repeats:10/real_time_stddev    200312443 ns   1276529446 ns           10 items_per_second=0/s
+MergesortOpenMP/1B/32/min_warmup_time:10.000/repeats:10/real_time_cv             0.92 %         11.54 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/1/min_warmup_time:10.000/repeats:10/real_time_mean    1.3598e+11 ns   6979081223 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/1/min_warmup_time:10.000/repeats:10/real_time_median  1.3588e+11 ns   7008247447 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/1/min_warmup_time:10.000/repeats:10/real_time_stddev   306916952 ns     62991883 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/1/min_warmup_time:10.000/repeats:10/real_time_cv            0.23 %          0.90 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/2/min_warmup_time:10.000/repeats:10/real_time_mean    7.6478e+10 ns   7016011363 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/2/min_warmup_time:10.000/repeats:10/real_time_median  7.6484e+10 ns   7015572553 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/2/min_warmup_time:10.000/repeats:10/real_time_stddev    33277241 ns      7403582 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/2/min_warmup_time:10.000/repeats:10/real_time_cv            0.04 %          0.11 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/4/min_warmup_time:10.000/repeats:10/real_time_mean    4.6717e+10 ns   7005432652 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/4/min_warmup_time:10.000/repeats:10/real_time_median  4.6721e+10 ns   7012989958 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/4/min_warmup_time:10.000/repeats:10/real_time_stddev    49016894 ns     25575560 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/4/min_warmup_time:10.000/repeats:10/real_time_cv            0.10 %          0.37 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/8/min_warmup_time:10.000/repeats:10/real_time_mean    3.1797e+10 ns   7062920935 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/8/min_warmup_time:10.000/repeats:10/real_time_median  3.1803e+10 ns   7069033252 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/8/min_warmup_time:10.000/repeats:10/real_time_stddev    29187693 ns     20257643 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/8/min_warmup_time:10.000/repeats:10/real_time_cv            0.09 %          0.29 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/16/min_warmup_time:10.000/repeats:10/real_time_mean   2.4123e+10 ns   7072905352 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/16/min_warmup_time:10.000/repeats:10/real_time_median 2.4122e+10 ns   7077884365 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/16/min_warmup_time:10.000/repeats:10/real_time_stddev   46439940 ns     13645134 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/16/min_warmup_time:10.000/repeats:10/real_time_cv           0.19 %          0.19 %            10 items_per_second=0.00%
+MergesortTaskflow/1B/32/min_warmup_time:10.000/repeats:10/real_time_mean   2.0819e+10 ns   6997759805 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/32/min_warmup_time:10.000/repeats:10/real_time_median 2.0797e+10 ns   7017184441 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/32/min_warmup_time:10.000/repeats:10/real_time_stddev  100685494 ns     71767874 ns           10 items_per_second=0/s
+MergesortTaskflow/1B/32/min_warmup_time:10.000/repeats:10/real_time_cv           0.48 %          1.03 %            10 items_per_second=0.00%

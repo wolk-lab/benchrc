@@ -1,139 +1,226 @@
-   Compiling benchrc v0.1.0 (/users/def4alt/benchrc)
-    Finished `bench` profile [optimized] target(s) in 21.34s
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded anes v0.1.6
+  Downloaded ciborium v0.2.2
+  Downloaded alloca v0.4.0
+  Downloaded ciborium-ll v0.2.2
+  Downloaded ciborium-io v0.2.2
+  Downloaded cfg-if v1.0.4
+  Downloaded cast v0.3.0
+  Downloaded anstyle v1.0.14
+  Downloaded plotters-svg v0.3.7
+  Downloaded itoa v1.0.18
+  Downloaded plotters-backend v0.3.7
+  Downloaded same-file v1.0.6
+  Downloaded autocfg v1.5.1
+  Downloaded walkdir v2.5.0
+  Downloaded quote v1.0.45
+  Downloaded shlex v2.0.1
+  Downloaded zmij v1.0.21
+  Downloaded tinytemplate v1.2.1
+  Downloaded crossbeam-utils v0.8.21
+  Downloaded unicode-ident v1.0.24
+  Downloaded num-traits v0.2.19
+  Downloaded half v2.7.1
+  Downloaded zerocopy-derive v0.8.50
+  Downloaded memchr v2.8.1
+  Downloaded serde v1.0.228
+  Downloaded plotters v0.3.7
+  Downloaded serde_json v1.0.150
+  Downloaded aho-corasick v1.1.4
+  Downloaded regex v1.12.3
+  Downloaded rayon v1.12.0
+  Downloaded clap_builder v4.6.0
+  Downloaded itertools v0.13.0
+  Downloaded criterion v0.8.2
+  Downloaded zerocopy v0.8.50
+  Downloaded rayon-core v1.13.0
+  Downloaded syn v2.0.117
+  Downloaded regex-syntax v0.8.10
+  Downloaded serde_derive v1.0.228
+  Downloaded serde_core v1.0.228
+  Downloaded proc-macro2 v1.0.106
+  Downloaded crossbeam-epoch v0.9.18
+  Downloaded clap v4.6.1
+  Downloaded crossbeam-deque v0.8.6
+  Downloaded criterion-plot v0.8.2
+  Downloaded page_size v0.6.0
+  Downloaded oorandom v11.1.5
+  Downloaded find-msvc-tools v0.1.9
+  Downloaded either v1.16.0
+  Downloaded clap_lex v1.1.0
+  Downloaded cc v1.2.63
+  Downloaded regex-automata v0.4.14
+  Downloaded libc v0.2.186
+   Compiling proc-macro2 v1.0.106
+   Compiling quote v1.0.45
+   Compiling unicode-ident v1.0.24
+   Compiling crossbeam-utils v0.8.21
+   Compiling serde_core v1.0.228
+   Compiling zerocopy v0.8.50
+   Compiling rayon-core v1.13.0
+   Compiling either v1.16.0
+   Compiling zmij v1.0.21
+   Compiling autocfg v1.5.1
+   Compiling find-msvc-tools v0.1.9
+   Compiling shlex v2.0.1
+   Compiling serde v1.0.228
+   Compiling libc v0.2.186
+   Compiling serde_json v1.0.150
+   Compiling cfg-if v1.0.4
+   Compiling ciborium-io v0.2.2
+   Compiling clap_lex v1.1.0
+   Compiling anstyle v1.0.14
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.1
+   Compiling regex-syntax v0.8.10
+   Compiling plotters-backend v0.3.7
+   Compiling same-file v1.0.6
+   Compiling cast v0.3.0
+   Compiling oorandom v11.1.5
+   Compiling anes v0.1.6
+   Compiling walkdir v2.5.0
+   Compiling cc v1.2.63
+   Compiling itertools v0.13.0
+   Compiling clap_builder v4.6.0
+   Compiling plotters-svg v0.3.7
+   Compiling num-traits v0.2.19
+   Compiling crossbeam-epoch v0.9.18
+   Compiling syn v2.0.117
+   Compiling crossbeam-deque v0.8.6
+   Compiling alloca v0.4.0
+   Compiling plotters v0.3.7
+   Compiling page_size v0.6.0
+   Compiling regex-automata v0.4.14
+   Compiling rayon v1.12.0
+   Compiling criterion-plot v0.8.2
+   Compiling clap v4.6.1
+   Compiling regex v1.12.3
+   Compiling zerocopy-derive v0.8.50
+   Compiling serde_derive v1.0.228
+   Compiling benchrc v0.1.0 (/users/def4alt/seminar)
+   Compiling tinytemplate v1.2.1
+   Compiling half v2.7.1
+   Compiling ciborium-ll v0.2.2
+   Compiling ciborium v0.2.2
+   Compiling criterion v0.8.2
+    Finished `bench` profile [optimized] target(s) in 32.83s
      Running benches/histogram.rs (target/release/deps/histogram-6e5630d7a6319dd4)
 Gnuplot not found, using plotters backend
 Benchmarking histogram/seq/1M_uniform_256
-Benchmarking histogram/seq/1M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/seq/1M_uniform_256: Collecting 30 samples in estimated 10.081 s (23k iterations)
+Benchmarking histogram/seq/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/seq/1M_uniform_256: Collecting 10 samples in estimated 60.004 s (126k iterations)
 Benchmarking histogram/seq/1M_uniform_256: Analyzing
 histogram/seq/1M_uniform_256
-                        time:   [442.16 µs 442.22 µs 442.29 µs]
-                        thrpt:  [2.2609 Gelem/s 2.2613 Gelem/s 2.2616 Gelem/s]
-                 change:
-                        time:   [−89.977% −89.974% −89.970%] (p = 0.00 < 0.05)
-                        thrpt:  [+896.99% +897.40% +897.75%]
-                        Performance has improved.
-Found 2 outliers among 30 measurements (6.67%)
-  2 (6.67%) high mild
+                        time:   [508.15 µs 508.55 µs 508.97 µs]
+                        thrpt:  [1.9648 Gelem/s 1.9664 Gelem/s 1.9679 Gelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
 Benchmarking histogram/rayon_1t/1M_uniform_256
-Benchmarking histogram/rayon_1t/1M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_1t/1M_uniform_256: Collecting 30 samples in estimated 10.559 s (2325 iterations)
+Benchmarking histogram/rayon_1t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_1t/1M_uniform_256: Collecting 10 samples in estimated 60.189 s (13k iterations)
 Benchmarking histogram/rayon_1t/1M_uniform_256: Analyzing
 histogram/rayon_1t/1M_uniform_256
-                        time:   [4.5450 ms 4.5461 ms 4.5473 ms]
-                        thrpt:  [219.91 Melem/s 219.97 Melem/s 220.02 Melem/s]
-                 change:
-                        time:   [−4.0780% −3.9995% −3.9240%] (p = 0.00 < 0.05)
-                        thrpt:  [+4.0843% +4.1661% +4.2514%]
-                        Performance has improved.
-Found 2 outliers among 30 measurements (6.67%)
-  1 (3.33%) low mild
-  1 (3.33%) high mild
+                        time:   [4.5219 ms 4.5265 ms 4.5297 ms]
+                        thrpt:  [220.76 Melem/s 220.92 Melem/s 221.15 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
 Benchmarking histogram/rayon_2t/1M_uniform_256
-Benchmarking histogram/rayon_2t/1M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_2t/1M_uniform_256: Collecting 30 samples in estimated 10.878 s (4650 iterations)
+Benchmarking histogram/rayon_2t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_2t/1M_uniform_256: Collecting 10 samples in estimated 60.127 s (26k iterations)
 Benchmarking histogram/rayon_2t/1M_uniform_256: Analyzing
 histogram/rayon_2t/1M_uniform_256
-                        time:   [2.3427 ms 2.3432 ms 2.3437 ms]
-                        thrpt:  [426.68 Melem/s 426.77 Melem/s 426.86 Melem/s]
-                 change:
-                        time:   [+1.7173% +1.7781% +1.8317%] (p = 0.00 < 0.05)
-                        thrpt:  [−1.7988% −1.7471% −1.6883%]
-                        Performance has regressed.
-Found 1 outliers among 30 measurements (3.33%)
-  1 (3.33%) low severe
+                        time:   [2.3158 ms 2.3162 ms 2.3166 ms]
+                        thrpt:  [431.67 Melem/s 431.73 Melem/s 431.82 Melem/s]
 Benchmarking histogram/rayon_4t/1M_uniform_256
-Benchmarking histogram/rayon_4t/1M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_4t/1M_uniform_256: Collecting 30 samples in estimated 10.424 s (8835 iterations)
+Benchmarking histogram/rayon_4t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_4t/1M_uniform_256: Collecting 10 samples in estimated 60.015 s (51k iterations)
 Benchmarking histogram/rayon_4t/1M_uniform_256: Analyzing
 histogram/rayon_4t/1M_uniform_256
-                        time:   [1.1805 ms 1.1810 ms 1.1816 ms]
-                        thrpt:  [846.32 Melem/s 846.71 Melem/s 847.09 Melem/s]
-                 change:
-                        time:   [+0.2431% +0.3374% +0.4311%] (p = 0.00 < 0.05)
-                        thrpt:  [−0.4293% −0.3363% −0.2426%]
-                        Change within noise threshold.
+                        time:   [1.1739 ms 1.1742 ms 1.1745 ms]
+                        thrpt:  [851.42 Melem/s 851.66 Melem/s 851.84 Melem/s]
 Benchmarking histogram/rayon_8t/1M_uniform_256
-Benchmarking histogram/rayon_8t/1M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_8t/1M_uniform_256: Collecting 30 samples in estimated 10.190 s (16k iterations)
+Benchmarking histogram/rayon_8t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_8t/1M_uniform_256: Collecting 10 samples in estimated 60.003 s (96k iterations)
 Benchmarking histogram/rayon_8t/1M_uniform_256: Analyzing
 histogram/rayon_8t/1M_uniform_256
-                        time:   [632.37 µs 632.76 µs 633.23 µs]
-                        thrpt:  [1.5792 Gelem/s 1.5804 Gelem/s 1.5814 Gelem/s]
-                 change:
-                        time:   [+0.0771% +0.4385% +0.7980%] (p = 0.03 < 0.05)
-                        thrpt:  [−0.7917% −0.4365% −0.0770%]
-                        Change within noise threshold.
-Found 6 outliers among 30 measurements (20.00%)
-  3 (10.00%) high mild
-  3 (10.00%) high severe
-Benchmarking histogram/seq/10M_uniform_256
-Benchmarking histogram/seq/10M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/seq/10M_uniform_256: Collecting 30 samples in estimated 10.630 s (1395 iterations)
-Benchmarking histogram/seq/10M_uniform_256: Analyzing
-histogram/seq/10M_uniform_256
-                        time:   [7.6320 ms 7.6374 ms 7.6423 ms]
-                        thrpt:  [1.3085 Gelem/s 1.3093 Gelem/s 1.3103 Gelem/s]
-                 change:
-                        time:   [−83.031% −83.018% −83.001%] (p = 0.00 < 0.05)
-                        thrpt:  [+488.27% +488.84% +489.30%]
-                        Performance has improved.
-Found 2 outliers among 30 measurements (6.67%)
-  2 (6.67%) high mild
-Benchmarking histogram/rayon_1t/10M_uniform_256
-Benchmarking histogram/rayon_1t/10M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_1t/10M_uniform_256: Collecting 30 samples in estimated 10.920 s (240 iterations)
-Benchmarking histogram/rayon_1t/10M_uniform_256: Analyzing
-histogram/rayon_1t/10M_uniform_256
-                        time:   [45.414 ms 45.444 ms 45.475 ms]
-                        thrpt:  [219.90 Melem/s 220.05 Melem/s 220.20 Melem/s]
-                 change:
-                        time:   [+1.2090% +1.2782% +1.3517%] (p = 0.00 < 0.05)
-                        thrpt:  [−1.3337% −1.2621% −1.1946%]
-                        Performance has regressed.
-Found 1 outliers among 30 measurements (3.33%)
-  1 (3.33%) high mild
-Benchmarking histogram/rayon_2t/10M_uniform_256
-Benchmarking histogram/rayon_2t/10M_uniform_256: Warming up for 3.0000 s
+                        time:   [636.20 µs 637.18 µs 637.58 µs]
+                        thrpt:  [1.5684 Gelem/s 1.5694 Gelem/s 1.5718 Gelem/s]
+Benchmarking histogram/rayon_16t/1M_uniform_256
+Benchmarking histogram/rayon_16t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_16t/1M_uniform_256: Collecting 10 samples in estimated 60.016 s (170k iterations)
+Benchmarking histogram/rayon_16t/1M_uniform_256: Analyzing
+histogram/rayon_16t/1M_uniform_256
+                        time:   [346.35 µs 346.68 µs 347.08 µs]
+                        thrpt:  [2.8812 Gelem/s 2.8845 Gelem/s 2.8873 Gelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking histogram/rayon_32t/1M_uniform_256
+Benchmarking histogram/rayon_32t/1M_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_32t/1M_uniform_256: Collecting 10 samples in estimated 60.008 s (196k iterations)
+Benchmarking histogram/rayon_32t/1M_uniform_256: Analyzing
+histogram/rayon_32t/1M_uniform_256
+                        time:   [306.51 µs 306.72 µs 307.03 µs]
+                        thrpt:  [3.2570 Gelem/s 3.2603 Gelem/s 3.2625 Gelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking histogram/seq/1B_uniform_256
+Benchmarking histogram/seq/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/seq/1B_uniform_256: Collecting 10 samples in estimated 74.986 s (110 iterations)
+Benchmarking histogram/seq/1B_uniform_256: Analyzing
+histogram/seq/1B_uniform_256
+                        time:   [677.91 ms 678.28 ms 678.54 ms]
+                        thrpt:  [1.4738 Gelem/s 1.4743 Gelem/s 1.4751 Gelem/s]
+Benchmarking histogram/rayon_1t/1B_uniform_256
+Benchmarking histogram/rayon_1t/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_1t/1B_uniform_256: Collecting 10 samples in estimated 90.014 s (20 iterations)
+Benchmarking histogram/rayon_1t/1B_uniform_256: Analyzing
+histogram/rayon_1t/1B_uniform_256
+                        time:   [4.4968 s 4.4974 s 4.4981 s]
+                        thrpt:  [222.32 Melem/s 222.35 Melem/s 222.38 Melem/s]
+Benchmarking histogram/rayon_2t/1B_uniform_256
+Benchmarking histogram/rayon_2t/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_2t/1B_uniform_256: Collecting 10 samples in estimated 67.466 s (30 iterations)
+Benchmarking histogram/rayon_2t/1B_uniform_256: Analyzing
+histogram/rayon_2t/1B_uniform_256
+                        time:   [2.2494 s 2.2497 s 2.2501 s]
+                        thrpt:  [444.42 Melem/s 444.50 Melem/s 444.56 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking histogram/rayon_4t/1B_uniform_256
+Benchmarking histogram/rayon_4t/1B_uniform_256: Warming up for 10.000 s
 
-Warning: Unable to complete 30 samples in 10.0s. You may wish to increase target time to 10.6s, enable flat sampling, or reduce sample count to 20.
-Benchmarking histogram/rayon_2t/10M_uniform_256: Collecting 30 samples in estimated 10.604 s (465 iterations)
-Benchmarking histogram/rayon_2t/10M_uniform_256: Analyzing
-histogram/rayon_2t/10M_uniform_256
-                        time:   [22.799 ms 22.808 ms 22.817 ms]
-                        thrpt:  [438.27 Melem/s 438.44 Melem/s 438.62 Melem/s]
-                 change:
-                        time:   [+1.6305% +1.7079% +1.7742%] (p = 0.00 < 0.05)
-                        thrpt:  [−1.7432% −1.6793% −1.6044%]
-                        Performance has regressed.
-Found 3 outliers among 30 measurements (10.00%)
-  2 (6.67%) low mild
-  1 (3.33%) high severe
-Benchmarking histogram/rayon_4t/10M_uniform_256
-Benchmarking histogram/rayon_4t/10M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_4t/10M_uniform_256: Collecting 30 samples in estimated 10.638 s (930 iterations)
-Benchmarking histogram/rayon_4t/10M_uniform_256: Analyzing
-histogram/rayon_4t/10M_uniform_256
-                        time:   [11.434 ms 11.445 ms 11.454 ms]
-                        thrpt:  [873.03 Melem/s 873.74 Melem/s 874.59 Melem/s]
-                 change:
-                        time:   [+0.0781% +0.1887% +0.3065%] (p = 0.00 < 0.05)
-                        thrpt:  [−0.3056% −0.1884% −0.0780%]
-                        Change within noise threshold.
-Found 2 outliers among 30 measurements (6.67%)
-  2 (6.67%) low mild
-Benchmarking histogram/rayon_8t/10M_uniform_256
-Benchmarking histogram/rayon_8t/10M_uniform_256: Warming up for 3.0000 s
-Benchmarking histogram/rayon_8t/10M_uniform_256: Collecting 30 samples in estimated 10.762 s (1860 iterations)
-Benchmarking histogram/rayon_8t/10M_uniform_256: Analyzing
-histogram/rayon_8t/10M_uniform_256
-                        time:   [5.7782 ms 5.7813 ms 5.7842 ms]
-                        thrpt:  [1.7289 Gelem/s 1.7297 Gelem/s 1.7306 Gelem/s]
-                 change:
-                        time:   [−2.1721% −1.6396% −1.0606%] (p = 0.00 < 0.05)
-                        thrpt:  [+1.0719% +1.6669% +2.2203%]
-                        Performance has improved.
-Found 2 outliers among 30 measurements (6.67%)
-  1 (3.33%) high mild
-  1 (3.33%) high severe
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 61.9s or enable flat sampling.
+Benchmarking histogram/rayon_4t/1B_uniform_256: Collecting 10 samples in estimated 61.861 s (55 iterations)
+Benchmarking histogram/rayon_4t/1B_uniform_256: Analyzing
+histogram/rayon_4t/1B_uniform_256
+                        time:   [1.1243 s 1.1246 s 1.1250 s]
+                        thrpt:  [888.91 Melem/s 889.19 Melem/s 889.42 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low mild
+Benchmarking histogram/rayon_8t/1B_uniform_256
+Benchmarking histogram/rayon_8t/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_8t/1B_uniform_256: Collecting 10 samples in estimated 61.982 s (110 iterations)
+Benchmarking histogram/rayon_8t/1B_uniform_256: Analyzing
+histogram/rayon_8t/1B_uniform_256
+                        time:   [563.06 ms 563.17 ms 563.29 ms]
+                        thrpt:  [1.7753 Gelem/s 1.7757 Gelem/s 1.7760 Gelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low mild
+Benchmarking histogram/rayon_16t/1B_uniform_256
+Benchmarking histogram/rayon_16t/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_16t/1B_uniform_256: Collecting 10 samples in estimated 62.850 s (220 iterations)
+Benchmarking histogram/rayon_16t/1B_uniform_256: Analyzing
+histogram/rayon_16t/1B_uniform_256
+                        time:   [281.82 ms 281.84 ms 281.86 ms]
+                        thrpt:  [3.5479 Gelem/s 3.5481 Gelem/s 3.5484 Gelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking histogram/rayon_32t/1B_uniform_256
+Benchmarking histogram/rayon_32t/1B_uniform_256: Warming up for 10.000 s
+Benchmarking histogram/rayon_32t/1B_uniform_256: Collecting 10 samples in estimated 73.585 s (275 iterations)
+Benchmarking histogram/rayon_32t/1B_uniform_256: Analyzing
+histogram/rayon_32t/1B_uniform_256
+                        time:   [266.42 ms 266.45 ms 266.47 ms]
+                        thrpt:  [3.7527 Gelem/s 3.7531 Gelem/s 3.7534 Gelem/s]
 

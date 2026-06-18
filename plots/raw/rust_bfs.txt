@@ -1,64 +1,112 @@
-    Finished `bench` profile [optimized] target(s) in 0.05s
+   Compiling proc-macro2 v1.0.106
+   Compiling quote v1.0.45
+   Compiling unicode-ident v1.0.24
+   Compiling crossbeam-utils v0.8.21
+   Compiling serde_core v1.0.228
+   Compiling zerocopy v0.8.50
+   Compiling find-msvc-tools v0.1.9
+   Compiling autocfg v1.5.1
+   Compiling serde v1.0.228
+   Compiling zmij v1.0.21
+   Compiling either v1.16.0
+   Compiling rayon-core v1.13.0
+   Compiling shlex v2.0.1
+   Compiling serde_json v1.0.150
+   Compiling libc v0.2.186
+   Compiling cfg-if v1.0.4
+   Compiling itoa v1.0.18
+   Compiling ciborium-io v0.2.2
+   Compiling plotters-backend v0.3.7
+   Compiling memchr v2.8.1
+   Compiling clap_lex v1.1.0
+   Compiling regex-syntax v0.8.10
+   Compiling anstyle v1.0.14
+   Compiling same-file v1.0.6
+   Compiling cast v0.3.0
+   Compiling anes v0.1.6
+   Compiling oorandom v11.1.5
+   Compiling cc v1.2.63
+   Compiling itertools v0.13.0
+   Compiling walkdir v2.5.0
+   Compiling plotters-svg v0.3.7
+   Compiling num-traits v0.2.19
+   Compiling clap_builder v4.6.0
+   Compiling crossbeam-epoch v0.9.18
+   Compiling syn v2.0.117
+   Compiling crossbeam-deque v0.8.6
+   Compiling alloca v0.4.0
+   Compiling plotters v0.3.7
+   Compiling page_size v0.6.0
+   Compiling regex-automata v0.4.14
+   Compiling rayon v1.12.0
+   Compiling criterion-plot v0.8.2
+   Compiling clap v4.6.1
+   Compiling regex v1.12.3
+   Compiling zerocopy-derive v0.8.50
+   Compiling serde_derive v1.0.228
+   Compiling benchrc v0.1.0 (/users/def4alt/seminar)
+   Compiling tinytemplate v1.2.1
+   Compiling half v2.7.1
+   Compiling ciborium-ll v0.2.2
+   Compiling ciborium v0.2.2
+   Compiling criterion v0.8.2
+    Finished `bench` profile [optimized] target(s) in 29.57s
      Running benches/bfs.rs (target/release/deps/bfs-1f7e603c4da40c0b)
 Gnuplot not found, using plotters backend
-Benchmarking bfs/seq/64K_fanout4
-Benchmarking bfs/seq/64K_fanout4: Warming up for 3.0000 s
-Benchmarking bfs/seq/64K_fanout4: Collecting 30 samples in estimated 10.020 s (17k iterations)
-Benchmarking bfs/seq/64K_fanout4: Analyzing
-bfs/seq/64K_fanout4     time:   [583.04 µs 583.16 µs 583.25 µs]
-                        thrpt:  [112.36 Melem/s 112.38 Melem/s 112.40 Melem/s]
-                 change:
-                        time:   [−1.0473% −0.8781% −0.7141%] (p = 0.00 < 0.05)
-                        thrpt:  [+0.7192% +0.8859% +1.0583%]
-                        Change within noise threshold.
-Benchmarking bfs/rayon_1t/64K_fanout4
-Benchmarking bfs/rayon_1t/64K_fanout4: Warming up for 3.0000 s
-Benchmarking bfs/rayon_1t/64K_fanout4: Collecting 30 samples in estimated 10.846 s (3720 iterations)
-Benchmarking bfs/rayon_1t/64K_fanout4: Analyzing
-bfs/rayon_1t/64K_fanout4
-                        time:   [2.9142 ms 2.9164 ms 2.9185 ms]
-                        thrpt:  [22.455 Melem/s 22.471 Melem/s 22.488 Melem/s]
-                 change:
-                        time:   [−0.2068% −0.0971% +0.0181%] (p = 0.10 > 0.05)
-                        thrpt:  [−0.0181% +0.0972% +0.2072%]
-                        No change in performance detected.
-Found 2 outliers among 30 measurements (6.67%)
-  1 (3.33%) low mild
-  1 (3.33%) high mild
-Benchmarking bfs/rayon_2t/64K_fanout4
-Benchmarking bfs/rayon_2t/64K_fanout4: Warming up for 3.0000 s
-Benchmarking bfs/rayon_2t/64K_fanout4: Collecting 30 samples in estimated 16.755 s (930 iterations)
-Benchmarking bfs/rayon_2t/64K_fanout4: Analyzing
-bfs/rayon_2t/64K_fanout4
-                        time:   [17.520 ms 17.612 ms 17.723 ms]
-                        thrpt:  [3.6978 Melem/s 3.7210 Melem/s 3.7406 Melem/s]
-                 change:
-                        time:   [−18.148% −17.711% −17.274%] (p = 0.00 < 0.05)
-                        thrpt:  [+20.881% +21.523% +22.172%]
-                        Performance has improved.
-Benchmarking bfs/rayon_4t/64K_fanout4
-Benchmarking bfs/rayon_4t/64K_fanout4: Warming up for 3.0000 s
-Benchmarking bfs/rayon_4t/64K_fanout4: Collecting 30 samples in estimated 11.068 s (180 iterations)
-Benchmarking bfs/rayon_4t/64K_fanout4: Analyzing
-bfs/rayon_4t/64K_fanout4
-                        time:   [60.615 ms 60.789 ms 60.991 ms]
-                        thrpt:  [1.0745 Melem/s 1.0781 Melem/s 1.0812 Melem/s]
-                 change:
-                        time:   [+12.780% +13.248% +13.698%] (p = 0.00 < 0.05)
-                        thrpt:  [−12.048% −11.698% −11.332%]
-                        Performance has regressed.
-Found 4 outliers among 30 measurements (13.33%)
-  1 (3.33%) low mild
-  3 (10.00%) high severe
-Benchmarking bfs/rayon_8t/64K_fanout4
-Benchmarking bfs/rayon_8t/64K_fanout4: Warming up for 3.0000 s
-Benchmarking bfs/rayon_8t/64K_fanout4: Collecting 30 samples in estimated 10.808 s (150 iterations)
-Benchmarking bfs/rayon_8t/64K_fanout4: Analyzing
-bfs/rayon_8t/64K_fanout4
-                        time:   [72.128 ms 72.299 ms 72.469 ms]
-                        thrpt:  [904.33 Kelem/s 906.46 Kelem/s 908.60 Kelem/s]
-                 change:
-                        time:   [+0.3846% +0.6090% +0.8392%] (p = 0.00 < 0.05)
-                        thrpt:  [−0.8322% −0.6053% −0.3831%]
-                        Change within noise threshold.
+Benchmarking bfs/seq/320M_tree
+Benchmarking bfs/seq/320M_tree: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 118.9s or enable flat sampling.
+Benchmarking bfs/seq/320M_tree: Collecting 10 samples in estimated 118.89 s (55 iterations)
+Benchmarking bfs/seq/320M_tree: Analyzing
+bfs/seq/320M_tree       time:   [2.1654 s 2.1755 s 2.1872 s]
+                        thrpt:  [146.30 Melem/s 147.10 Melem/s 147.78 Melem/s]
+Benchmarking bfs/rayon_1t/320M_tree
+Benchmarking bfs/rayon_1t/320M_tree: Warming up for 10.000 s
+Benchmarking bfs/rayon_1t/320M_tree: Collecting 10 samples in estimated 82.463 s (20 iterations)
+Benchmarking bfs/rayon_1t/320M_tree: Analyzing
+bfs/rayon_1t/320M_tree  time:   [4.1256 s 4.1442 s 4.1637 s]
+                        thrpt:  [76.854 Melem/s 77.217 Melem/s 77.564 Melem/s]
+Benchmarking bfs/rayon_2t/320M_tree
+Benchmarking bfs/rayon_2t/320M_tree: Warming up for 10.000 s
+Benchmarking bfs/rayon_2t/320M_tree: Collecting 10 samples in estimated 77.646 s (30 iterations)
+Benchmarking bfs/rayon_2t/320M_tree: Analyzing
+bfs/rayon_2t/320M_tree  time:   [2.5405 s 2.5427 s 2.5447 s]
+                        thrpt:  [125.75 Melem/s 125.85 Melem/s 125.96 Melem/s]
+Benchmarking bfs/rayon_4t/320M_tree
+Benchmarking bfs/rayon_4t/320M_tree: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 107.8s or enable flat sampling.
+Benchmarking bfs/rayon_4t/320M_tree: Collecting 10 samples in estimated 107.82 s (55 iterations)
+Benchmarking bfs/rayon_4t/320M_tree: Analyzing
+bfs/rayon_4t/320M_tree  time:   [1.8300 s 1.8441 s 1.8782 s]
+                        thrpt:  [170.38 Melem/s 173.53 Melem/s 174.86 Melem/s]
+Benchmarking bfs/rayon_8t/320M_tree
+Benchmarking bfs/rayon_8t/320M_tree: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 81.3s or enable flat sampling.
+Benchmarking bfs/rayon_8t/320M_tree: Collecting 10 samples in estimated 81.303 s (55 iterations)
+Benchmarking bfs/rayon_8t/320M_tree: Analyzing
+bfs/rayon_8t/320M_tree  time:   [1.4034 s 1.4085 s 1.4150 s]
+                        thrpt:  [226.15 Melem/s 227.19 Melem/s 228.01 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking bfs/rayon_16t/320M_tree
+Benchmarking bfs/rayon_16t/320M_tree: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 69.4s or enable flat sampling.
+Benchmarking bfs/rayon_16t/320M_tree: Collecting 10 samples in estimated 69.379 s (55 iterations)
+Benchmarking bfs/rayon_16t/320M_tree: Analyzing
+bfs/rayon_16t/320M_tree time:   [1.2495 s 1.2540 s 1.2624 s]
+                        thrpt:  [253.49 Melem/s 255.17 Melem/s 256.10 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking bfs/rayon_32t/320M_tree
+Benchmarking bfs/rayon_32t/320M_tree: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 64.6s or enable flat sampling.
+Benchmarking bfs/rayon_32t/320M_tree: Collecting 10 samples in estimated 64.581 s (55 iterations)
+Benchmarking bfs/rayon_32t/320M_tree: Analyzing
+bfs/rayon_32t/320M_tree time:   [1.1698 s 1.1735 s 1.1768 s]
+                        thrpt:  [271.92 Melem/s 272.69 Melem/s 273.56 Melem/s]
 
