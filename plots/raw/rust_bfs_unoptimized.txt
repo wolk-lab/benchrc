@@ -1,0 +1,61 @@
+   Compiling benchrc v0.1.0 (/users/def4alt/seminar)
+    Finished `bench` profile [optimized] target(s) in 20.70s
+     Running benches/bfs.rs (target/release/deps/bfs-1f7e603c4da40c0b)
+Gnuplot not found, using plotters backend
+Benchmarking bfs/seq/6M_fanout4
+Benchmarking bfs/seq/6M_fanout4: Warming up for 10.000 s
+Benchmarking bfs/seq/6M_fanout4: Collecting 10 samples in estimated 62.706 s (990 iterations)
+Benchmarking bfs/seq/6M_fanout4: Analyzing
+bfs/seq/6M_fanout4      time:   [61.173 ms 61.206 ms 61.227 ms]
+                        thrpt:  [107.04 Melem/s 107.07 Melem/s 107.13 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low severe
+Benchmarking bfs/rayon_1t/6M_fanout4
+Benchmarking bfs/rayon_1t/6M_fanout4: Warming up for 10.000 s
+Benchmarking bfs/rayon_1t/6M_fanout4: Collecting 10 samples in estimated 73.134 s (275 iterations)
+Benchmarking bfs/rayon_1t/6M_fanout4: Analyzing
+bfs/rayon_1t/6M_fanout4 time:   [265.37 ms 265.43 ms 265.55 ms]
+                        thrpt:  [24.679 Melem/s 24.690 Melem/s 24.696 Melem/s]
+Benchmarking bfs/rayon_2t/6M_fanout4
+Benchmarking bfs/rayon_2t/6M_fanout4: Warming up for 10.000 s
+Benchmarking bfs/rayon_2t/6M_fanout4: Collecting 10 samples in estimated 70.790 s (30 iterations)
+Benchmarking bfs/rayon_2t/6M_fanout4: Analyzing
+bfs/rayon_2t/6M_fanout4 time:   [2.2949 s 2.3263 s 2.3647 s]
+                        thrpt:  [2.7714 Melem/s 2.8171 Melem/s 2.8557 Melem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking bfs/rayon_4t/6M_fanout4
+Benchmarking bfs/rayon_4t/6M_fanout4: Warming up for 10.000 s
+Benchmarking bfs/rayon_4t/6M_fanout4: Collecting 10 samples in estimated 119.67 s (20 iterations)
+Benchmarking bfs/rayon_4t/6M_fanout4: Analyzing
+bfs/rayon_4t/6M_fanout4 time:   [5.9058 s 5.9140 s 5.9234 s]
+                        thrpt:  [1.1064 Melem/s 1.1082 Melem/s 1.1097 Melem/s]
+Benchmarking bfs/rayon_8t/6M_fanout4
+Benchmarking bfs/rayon_8t/6M_fanout4: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 73.6s.
+Benchmarking bfs/rayon_8t/6M_fanout4: Collecting 10 samples in estimated 73.582 s (10 iterations)
+Benchmarking bfs/rayon_8t/6M_fanout4: Analyzing
+bfs/rayon_8t/6M_fanout4 time:   [7.3866 s 7.3878 s 7.3891 s]
+                        thrpt:  [886.93 Kelem/s 887.08 Kelem/s 887.23 Kelem/s]
+Benchmarking bfs/rayon_16t/6M_fanout4
+Benchmarking bfs/rayon_16t/6M_fanout4: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 77.7s.
+Benchmarking bfs/rayon_16t/6M_fanout4: Collecting 10 samples in estimated 77.734 s (10 iterations)
+Benchmarking bfs/rayon_16t/6M_fanout4: Analyzing
+bfs/rayon_16t/6M_fanout4
+                        time:   [7.6740 s 7.7570 s 7.8406 s]
+                        thrpt:  [835.85 Kelem/s 844.86 Kelem/s 854.00 Kelem/s]
+Benchmarking bfs/rayon_32t/6M_fanout4
+Benchmarking bfs/rayon_32t/6M_fanout4: Warming up for 10.000 s
+
+Warning: Unable to complete 10 samples in 60.0s. You may wish to increase target time to 215.8s.
+Benchmarking bfs/rayon_32t/6M_fanout4: Collecting 10 samples in estimated 215.85 s (10 iterations)
+Benchmarking bfs/rayon_32t/6M_fanout4: Analyzing
+bfs/rayon_32t/6M_fanout4
+                        time:   [20.927 s 21.070 s 21.243 s]
+                        thrpt:  [308.50 Kelem/s 311.04 Kelem/s 313.16 Kelem/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+
