@@ -17,7 +17,7 @@ HISTOGRAM_1B = 1_000_000_000
 MERGESORT_1B = 1_000_000_000
 STENCIL_1B = 1_000_000_000
 RAYON_OVERHEAD_10K = 10_000
-BFS_6M_NODES = 6_553_600
+BFS_320M_NODES = 320_000_000
 BFS_FANOUT = 4
 SEED = 42
 
@@ -46,14 +46,18 @@ def _write_f64_dataset(path: pathlib.Path, count: int, seed: int) -> None:
 
 
 def _write_bfs_graph(path: pathlib.Path, num_nodes: int, fanout: int) -> None:
+    """Generate a binary-tree graph: node i has children 2i+1 and 2i+2.
+    Wide frontiers enable parallel BFS scaling."""
     offsets = array.array("Q", [0])
     edges = array.array("I")
 
     for node in range(num_nodes):
-        for step in range(1, fanout + 1):
-            neighbor = node + step
-            if neighbor < num_nodes:
-                edges.append(neighbor)
+        left = 2 * node + 1
+        right = 2 * node + 2
+        if left < num_nodes:
+            edges.append(left)
+        if right < num_nodes:
+            edges.append(right)
         offsets.append(len(edges))
 
     if sys.byteorder != "little":
@@ -95,7 +99,7 @@ def main() -> None:
     _generate("mergesort_u32_1b.u32le.bin", output_dir, lambda path: _write_u32_dataset(path, MERGESORT_1B, SEED))
     _generate("stencil_f64_1b.f64le.bin", output_dir, lambda path: _write_f64_dataset(path, STENCIL_1B, SEED))
     _generate("rayon_overhead_u32_10k.u32le.bin", output_dir, lambda path: _write_u32_dataset(path, RAYON_OVERHEAD_10K, SEED))
-    _generate("bfs_6m_fanout4.graph.bin", output_dir, lambda path: _write_bfs_graph(path, BFS_6M_NODES, BFS_FANOUT))
+    _generate("bfs_320m_tree.graph.bin", output_dir, lambda path: _write_bfs_graph(path, BFS_320M_NODES, BFS_FANOUT))
 
 
 if __name__ == "__main__":

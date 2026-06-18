@@ -4,7 +4,7 @@ use common::{RAYON_THREAD_COUNTS, configure_group, default_criterion, set_elemen
 use criterion::{BenchmarkId, criterion_group, criterion_main};
 use benchrc::benchmarks::{
     bfs::{rayon as bfs_rayon, sequential as bfs_seq},
-    common::bfs_graph_6m,
+    common::bfs_graph_320m,
 };
 use std::hint::black_box;
 
@@ -30,7 +30,7 @@ fn bench_bfs_group(group: &mut criterion::BenchmarkGroup<'_, criterion::measurem
 
 fn bfs_benches(c: &mut criterion::Criterion) {
     // Verify correctness before benchmarking
-    let graph = bfs_graph_6m();
+    let graph = bfs_graph_320m();
     let seq_visited = bfs_seq::bfs(graph, 0);
     assert_eq!(seq_visited, graph.num_nodes as u64, "sequential BFS verification failed");
     let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
@@ -40,7 +40,7 @@ fn bfs_benches(c: &mut criterion::Criterion) {
     let mut group = c.benchmark_group("bfs");
     configure_group(&mut group);
 
-    bench_bfs_group(&mut group, "6M_fanout4", bfs_graph_6m());
+    bench_bfs_group(&mut group, "320M_tree", bfs_graph_320m());
 
     group.finish();
 }

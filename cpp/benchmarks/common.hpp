@@ -46,8 +46,8 @@ inline const std::vector<double>& stencil_f64_1b() {
     return data;
 }
 
-inline const Graph& bfs_graph_6m() {
-    static const auto graph = load_graph_dataset("bfs_6m_fanout4.graph.bin");
+inline const Graph& bfs_graph_320m() {
+    static const auto graph = load_graph_dataset("bfs_320m_tree.graph.bin");
     return graph;
 }
 
@@ -115,19 +115,19 @@ inline void verify_stencil() {
 }
 
 inline void verify_bfs() {
-    auto seq_visited = seminar::bfs_sequential(bfs_graph_6m(), 0);
-    if (seq_visited != bfs_graph_6m().num_nodes) {
+    auto seq_visited = seminar::bfs_sequential(bfs_graph_320m(), 0);
+    if (seq_visited != bfs_graph_320m().num_nodes) {
         throw std::runtime_error("sequential BFS verification failed");
     }
 
-    auto openmp_visited = seminar::bfs_openmp(bfs_graph_6m(), 0, 1);
-    if (openmp_visited != bfs_graph_6m().num_nodes) {
+    auto openmp_visited = seminar::bfs_openmp(bfs_graph_320m(), 0, 1);
+    if (openmp_visited != bfs_graph_320m().num_nodes) {
         throw std::runtime_error("OpenMP BFS verification failed");
     }
 
     tf::Executor executor(1);
-    auto taskflow_visited = seminar::bfs_taskflow(bfs_graph_6m(), 0, executor, 1);
-    if (taskflow_visited != bfs_graph_6m().num_nodes) {
+    auto taskflow_visited = seminar::bfs_taskflow(bfs_graph_320m(), 0, executor, 1);
+    if (taskflow_visited != bfs_graph_320m().num_nodes) {
         throw std::runtime_error("Taskflow BFS verification failed");
     }
 }

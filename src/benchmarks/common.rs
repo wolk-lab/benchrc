@@ -138,9 +138,9 @@ pub fn rayon_overhead_u32_10k() -> &'static Vec<u32> {
     DATA.get_or_init(|| load_u32_dataset("rayon_overhead_u32_10k.u32le.bin", 10_000))
 }
 
-pub fn bfs_graph_6m() -> &'static Graph {
+pub fn bfs_graph_320m() -> &'static Graph {
     static DATA: OnceLock<Graph> = OnceLock::new();
-    DATA.get_or_init(|| load_graph_dataset("bfs_6m_fanout4.graph.bin"))
+    DATA.get_or_init(|| load_graph_dataset("bfs_320m_tree.graph.bin"))
 }
 
 fn mix64(mut value: u64) -> u64 {
