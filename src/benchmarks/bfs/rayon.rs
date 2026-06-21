@@ -17,9 +17,11 @@ pub fn bfs(graph: &Graph, source: u32) -> u64 {
             .par_chunks(CHUNK_SIZE)
             .flat_map(|chunk| {
                 let mut local = Vec::with_capacity(chunk.len() * 2);
+
                 for &node in chunk {
                     let start = graph.offsets[node as usize];
                     let end = graph.offsets[node as usize + 1];
+
                     for &neighbor in &graph.edges[start..end] {
                         if !visited[neighbor as usize].swap(true, Ordering::Acquire) {
                             local.push(neighbor);

@@ -7,10 +7,14 @@ pub fn stencil(values: &[f64], iterations: usize, radius: usize) -> Vec<f64> {
         for (index, item) in next.iter_mut().enumerate() {
             let start = index.saturating_sub(radius);
             let end = (index + radius + 1).min(n);
+
             let count = end - start;
+
             let sum: f64 = current[start..end].iter().sum();
+
             *item = sum / count as f64;
         }
+
         std::mem::swap(&mut current, &mut next);
     }
 

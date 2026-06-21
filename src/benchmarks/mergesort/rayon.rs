@@ -1,8 +1,10 @@
 fn mergesort_inner<T: Ord + Send + Clone>(arr: &mut [T], buf: &mut [T], cutoff: usize) {
     let n = arr.len();
+
     if n <= 1 {
         return;
     }
+
     if n <= cutoff {
         arr.sort_unstable();
         return;
@@ -18,6 +20,7 @@ fn mergesort_inner<T: Ord + Send + Clone>(arr: &mut [T], buf: &mut [T], cutoff: 
     );
 
     let (mut i, mut j, mut k) = (0, mid, 0);
+
     while i < mid && j < n {
         if arr[i] <= arr[j] {
             buf[k] = arr[i].clone();
@@ -26,13 +29,16 @@ fn mergesort_inner<T: Ord + Send + Clone>(arr: &mut [T], buf: &mut [T], cutoff: 
             buf[k] = arr[j].clone();
             j += 1;
         }
+
         k += 1;
     }
+
     while i < mid {
         buf[k] = arr[i].clone();
         i += 1;
         k += 1;
     }
+
     while j < n {
         buf[k] = arr[j].clone();
         j += 1;
