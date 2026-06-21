@@ -269,7 +269,6 @@ def plot_family(fam):
             markeredgecolor="white",
         )
 
-    ax.set_title(fam["label"])
     ax.set_xlabel("Threads")
     ax.set_ylabel(y_label)
     ax.set_xscale("log", base=2)
